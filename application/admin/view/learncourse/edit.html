@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编辑课程</title>
+    <link rel="shortcut icon" href="__cIMG__/favicon.ico">
+    <link rel="Bookmark" href="__cIMG__/favicon.ico">
+    <link href="__aCSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__aCSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="__aCSS__/animate.min.css" rel="stylesheet">
+    <link href="__aCSS__/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="__aCSS__/style.min.css?v=4.1.0" rel="stylesheet">
+    <link href="__aJS__/plugins/layui/css/layui.css" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="__aCSS__/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <!-- simditor-->
+    <link href="__aCSS__/plugins/simditor/simditor.css" rel="stylesheet">
+    <link rel="stylesheet" href="__aCSS__/plugins/simditor/simditor-emoji.css" >
+
+    <link rel="stylesheet" href="__aCSS__/plugins/switchery/switchery.css" >
+    <link href="__aCSS__/common.css" rel="stylesheet">
+    <style>
+        .simditor .simditor-body, .editor-style {
+
+            max-height: 500px;
+            max-width: 900px;
+            overflow: auto;
+        }
+        .simditor .simditor-body img{
+            width: 100%;
+            height: auto;
+        }
+        .layui-form-checked, .layui-form-checked:hover {
+            border-color: #1ab394;
+        }
+        .layui-form-checked span, .layui-form-checked:hover span {
+            background-color: #1ab394;
+        }
+        .layui-form-checked i, .layui-form-checked:hover i {
+            color: #1ab394;
+        }
+    </style>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>编辑课程</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t">
+                        <div class="col-sm-12">
+                            <div class="form-group hidden">
+                                <label class="col-sm-2 control-label"> id：</label>
+                                <div class="input-group col-sm-7">
+                                    <input id="id" type="text" class="form-control" name="id" required="" aria-required="true" value="{$data.id}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" data-original-title="必填项"></i> 标题：</label>
+                                <div class="input-group col-sm-7">
+                                    <input id="title" type="text" class="form-control" name="title" required="" aria-required="true" value="{$data.title}">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" data-original-title="必填项"></i> 类型：</label>
+                                <input type="hidden" id="course_type" name="course_type" value="{$data.course_type}">
+                                <div class="input-group col-sm-7 layui-form">
+                                    <select lay-verify="required" lay-filter="course_type" required="" aria-required="true">
+                                        {volist name="type_map" id="vo"}
+                                        <option value="{$key}" {if condition="$data.course_type eq $key"}selected{/if} >{$vo}</option>
+                                        {/volist}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom" data-original-title="必填项，单位（天），建议填写7天"></i> 可选天数：</label>
+                                <div class="input-group col-sm-7">
+                                    <input id="long" type="number" class="form-control" name="long" required="" aria-required="true" value="{$data.long}">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom" data-original-title="必填项，提前预约天数，最小值1（天），最大值30（天）"></i> 提前预约天数：</label>
+                                <div class="input-group col-sm-7">
+                                    <input id="forward" type="number" class="form-control" name="forward" required="" aria-required="true" value="{$data.forward}">
+                                </div>
+                            </div>
+
+                            <div class="form-group grades hidden">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom" data-original-title="必填项，可多选"></i> 选择等级：</label>
+                                <div class="input-group col-sm-7 layui-form">
+                                    {foreach $grades as $vo}
+                                    <input type="checkbox" name="grade_ids[]" value="{$vo.id}" title="{$vo.name}" {if condition="$vo.is_checked == 1"} checked {/if}>
+                                    {/foreach}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom" data-original-title="必填项"></i> 上传封面图：</label>
+                                <div class="input-group col-sm-7">
+                                    <span class="btn btn-primary btn-file">
+                                        上传<input id="photo" type="file" multiple="multiple" >
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group photo-read">
+                                <label class="col-sm-2 control-label"> 预览：</label>
+                                <div class="input-group col-sm-4">
+                                    <div class="thumbnail">
+                                        <img src="__UPLOADS__/{$data.photo}" name="photo" id="photo-r">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" data-original-title="必填项"></i> 描述：</label>
+                                <div class="input-group col-sm-9">
+                                    <textarea id="des" type="text" class="form-control" name="des" style="overflow: hidden" rows="10" cols="1" required="" aria-required="true" autofocus></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <button class="btn btn-primary sub" >提交</button>
+                                <a class="btn btn-default cancel" href="{:url('lists')}">取消</a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="__aJS__/jquery.min.js?v=2.1.4"></script>
+<script src="__aJS__/bootstrap.min.js?v=3.3.6"></script>
+<script src="__aJS__/content.min.js?v=1.0.0"></script>
+<script src="__aJS__/plugins/validate/jquery.validate.min.js"></script>
+<script src="__aJS__/plugins/validate/messages_zh.min.js"></script>
+<script src="__aJS__/plugins/iCheck/icheck.min.js"></script>
+<script src="__aJS__/plugins/sweetalert/sweetalert.min.js"></script>
+
+<script src="__cJS__/jquery.charactercounter.js"></script>
+
+<script src="__aJS__/plugins/simditor/module.js"></script>
+<script src="__aJS__/plugins/simditor/hotkeys.js"></script>
+<script src="__aJS__/plugins/simditor/uploader.js"></script>
+<script src="__aJS__/plugins/simditor/simditor.js"></script>
+<script src="__aJS__/plugins/simditor/simditor-emoji.js"></script>
+
+<script src="__aJS__/plugins/layer/laydate5/laydate.js"></script>
+<script src="__aJS__/plugins/suggest/bootstrap-suggest.min.js"></script>
+<script src="__aJS__/plugins/layer/layer.min.js"></script>
+<script src="__aJS__/plugins/layui/layui.js"></script>
+<script src="__aJS__/plugins/switchery/switchery.js"></script>
+<script type="text/javascript">
+
+    //表单验证
+    $(document).ready(function(){
+        $(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",});
+    });
+    $.validator.setDefaults({
+        highlight: function(e) {
+            $(e).closest(".form-group").removeClass("has-success").addClass("has-error")
+        },
+        success: function(e) {
+            e.closest(".form-group").removeClass("has-error").addClass("has-success")
+        },
+        errorElement: "span",
+        errorPlacement: function(e, r) {
+            e.appendTo(r.is(":radio") || r.is(":checkbox") ? r.parent().parent().parent() : r.parent())
+        },
+        errorClass: "help-block m-b-none",
+        validClass: "help-block m-b-none"
+    });
+
+</script>
+<script>
+    var is_learn = '{:app\\common\\controller\\Sys::COURSE_TYPE_LEARN}';
+    var is_vip = '{:app\\common\\controller\\Sys::COURSE_TYPE_VIP}';
+    $(function () {
+        var jz;
+
+        /*编辑工具初始化*/
+        var editor2 = new Simditor({
+            textarea: $('#des'),
+            placeholder: '请输入内容...',
+            toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'table', '|', 'link', 'hr', '|', 'indent', 'outdent' ,'alignment', 'emoji'],
+            emoji: {
+                imagePath: '__aIMG__/emoji/'
+            }
+        });
+
+        editor2.setValue('{$data.des}');
+
+        /*tooltip init*/
+        $('[data-toggle="tooltip"]').tooltip();
+
+        layui.use('form', function() {
+            var form = layui.form;
+
+            form.on('select(course_type)', function (value) {
+                $("#course_type").val(value.value);
+                isVip(value.value)
+            });
+        });
+
+        function isVip(value) {
+            switch (value)
+            {
+                case is_learn:
+                    $('.grades').addClass('hidden');
+                    break;
+                case is_vip:
+                    $('.grades').removeClass('hidden');
+                    break;
+            }
+        }
+        isVip($('#course_type').val());
+
+
+        /*上传封面*/
+        var up_path = '__UPLOADS__';
+        var up_path_length = parseInt(up_path.length)+1;
+        $('#photo').on('change',function(){
+            //创建数据对象
+            var data = new FormData();
+
+            //判断前一张
+            var last_photo_path = $('#photo-r').attr('src');
+
+
+            if(last_photo_path.length>0){
+                data.append('last_photo_path',last_photo_path.substring(up_path_length));//添加上一张照片路径属性
+            }
+            var file = $(this)[0].files[0];
+            data.append('upload_file',file);
+
+            /*$.each($(this)[0].files,function(i,file){//添加图片
+             data.append('upload_file'+i,file);
+             });*/
+
+            $.ajax({
+                url: "{:url('addPhoto')}",
+                datatype: "json",
+                data:data,
+                type: "POST",
+                cache:false,
+                contentType:false,
+                processData:false,
+                beforeSend:function(){
+                    jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+                },
+                error: function(request) {
+                    layer.close(jz);
+                    swal("网络错误!", "", "error");
+                },
+                success: function(data) {
+                    //关闭加载层
+                    layer.close(jz);
+                    if(data.code == 1){
+                        console.log(data);
+                        var photo_path='__UPLOADS__/'+data.data;
+                        $('#photo-r').attr('src',photo_path);
+                        /*swal(data.msg, "", "success");*/
+                    }else{
+                        swal(data.msg, "", "error");
+                    }
+
+                }
+            });
+        });//异步上传图片代码
+
+
+        /*提交*/
+        $('.sub').click(function () {
+            var url = "{:url('edit')}";
+
+            var grade_ids = '';
+
+            $("input[type='checkbox']").each(function () {
+                if ($(this).prop('checked'))
+                {
+                    grade_ids += $(this).val() + ',';
+                }
+            });
+
+            var path = $('#photo-r').attr('src').substring(up_path_length),
+                    title = $('#title').val(),
+                    long = $('#long').val(),
+                    forward = $('#forward').val(),
+                    des = editor2.getValue(),
+                    course_type = $('#course_type').val(),
+                    id = $('#id').val()
+                    ;
+
+            if (long < 1)
+            {
+                swal("可选天数不能少于1天", "", "error");
+                return false;
+            }
+            if (forward < 1 || forward > 30)
+            {
+                swal("提前预约天数范围在1-30天", "", "error");
+                return false;
+            }
+            var data = {
+                id:id,
+                title:title,
+                photo:path,
+                des:des,
+                long:long,
+                forward:forward,
+                course_type:course_type,
+                grade_ids: grade_ids
+            };
+
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,// 你的formid
+                async: false,
+                beforeSend:function(){
+                    jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+                },
+                error: function(request) {
+                    layer.close(jz);
+                    swal("网络错误!", "", "error");
+                },
+                success: function(data) {
+                    //关闭加载层
+                    layer.close(jz);
+                    if(data.code == 1){
+                        swal(data.msg, "", "success");
+                        setTimeout(function () {
+                            location.href="{:url('lists')}";
+                        }, 1000);
+                    }else{
+                        swal(data.msg, "", "error");
+
+                    }
+
+                }
+            });
+
+            return false;
+
+        });
+
+    });
+</script>
+</body>
+</html>

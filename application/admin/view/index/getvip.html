@@ -1,0 +1,12 @@
+{__NOLAYOUT__}
+{empty name="vipcourse"}
+<a href="javascript:;" class="list-group-item list-group-item-danger">今日暂无会员课</a>
+{else /}
+{foreach name="vipcourse" item="item" key="k"}
+<a href="javascript:;" class="list-group-item list-group-item-success">
+    {foreach $item as $v}
+    <span class="badge">{$v[0]['grade_name']}</span>
+    {/foreach}
+    {$k}</a>
+{/foreach}
+{/empty}

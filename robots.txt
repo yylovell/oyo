@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: 
+Disallow: /application/admin
+Disallow: /back
+Disallow: /extend
+Disallow: /runtime

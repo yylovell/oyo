@@ -1,0 +1,57 @@
+.bar-tab .tab-item.active,
+.bar-tab .tab-item:active {
+    color: #242657;
+}
+/*
+.button-success.button-fill {
+    color: #fff;
+    background-color: #242657;
+}*/
+.verb-block{
+    height: 15px;
+    background-color: #EFEFF4;
+}
+
+/*移动端1px线*/
+.border-1px{
+    position: relative;
+}
+
+.border-1px:after{
+    display: block;
+    position :absolute;
+    left: 0;
+    bottom :0;
+    width: 100%;
+    border-top: 1px solid #dfdfdf;
+    content: ' ';
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+}
+.content-block {
+    padding: 0 .6rem;
+}
+
+@keyframes anima {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+@-webkit-keyframes anima {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}

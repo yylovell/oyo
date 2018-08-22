@@ -1,0 +1,112 @@
+/* body*/
+body {
+    position: relative;
+
+    font-family: 'Open Sans', 'Helvetica Neue', Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+    font-size: 15px;
+    padding-top: 70px;
+    margin: 0;
+    overflow-x: hidden;
+
+    color: #535353;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none
+}
+
+a:hover {
+    text-decoration: none
+}
+
+a, button {
+    transition: all 180ms ease-in;
+    -webkit-transition: all 180ms ease-in;
+}
+/* 分隔线*/
+hr {
+    width: 5%;
+    border-color: rgba(205, 154, 15, 1);
+}
+/*logo*/
+#logo {
+    width: 20px;
+    height: 20px;
+}
+/*导航条*/
+.navbar {
+    min-height: 40px;
+    box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.2)
+}
+
+.navbar-fixed-top {
+    /*border-bottom:1px solid #eee;*/
+    background-color: #fff;
+}
+
+.navbar-toggle {
+    margin-top: 10px;
+}
+/* 导航栏活动标签*/
+.navbar-default .navbar-nav > li > a {
+    line-height: 40px;
+    border-bottom: 3px solid transparent;
+    transition: all 260ms ease-in;
+    -webkit-transition: all 260ms ease-in;
+}
+/* 导航栏活动标签*/
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    background-color: #f6f6f6;
+}
+/*响应式按钮样式修改*/
+.navbar-default .navbar-toggle {
+    border: 1px dashed rgb(205, 154, 15);
+}
+
+.navbar-default .navbar-toggle:hover {
+    background-color: #eee;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: rgb(205, 154, 15);
+}
+
+
+/*大段文字容器加上防止字符出边界*/
+.msg-rq {
+    word-break: break-all;
+}
+
+/*表格列垂直居中*/
+table td {
+    vertical-align: middle !important;
+}
+
+
+
+/*news*/
+.news-mobile{
+    padding: 10px;
+}
+.news-lists hr{
+    width: 100%;
+    border-top-style: dashed;
+}
+.news-mobile button{
+    font-size: 11px !important;
+}
+.media-heading{
+    font-size: 14px;
+    color: rgba(205, 154, 15, 1);
+    display: inline-block;
+}
+.link{
+    font-size: 12px;
+    color: rgba(0,0,0,.43);
+}
+.media-body{
+    text-align: left;
+}

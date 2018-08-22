@@ -1,0 +1,8 @@
+{__NOLAYOUT__}
+{empty name="learncourse"}
+<a href="javascript:;" class="list-group-item list-group-item-danger">今日暂无体验课</a>
+{else /}
+{foreach name="learncourse" item="item" key="k"}
+<a href="javascript:;" class="list-group-item list-group-item-success">{$k}</a>
+{/foreach}
+{/empty}

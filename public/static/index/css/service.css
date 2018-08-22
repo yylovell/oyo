@@ -1,0 +1,67 @@
+.header{
+    padding: 30px 80px;
+    font-weight: 300;
+    font-size: 18px;
+    background-color: #24ad7f;
+    background-size: cover;
+    background-image: url('../images/breadcrumbs-bar-bg.jpg');
+    color: #fff;
+    line-height: 60px;
+}
+.header h1{
+    text-shadow: -3px 3px 0 rgba(0,0,0,.1);
+}
+.breadcrumbs{
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+.breadcrumbs a{
+    color: #fff !important;
+}
+
+/**/
+.services-lists{
+    min-height: 300px;
+    background-color: #fff;
+}
+.services-content{
+    padding: 100px 100px 50px;
+}
+.services-content h3{
+    color: rgb(205, 154, 15);
+    margin-bottom: 20px;
+}
+.services-content-text{
+    padding: 20px;
+}
+.services-content-head  .background-s{
+    font-family:"宋体", 微软雅黑;
+    font-size: 160px;
+    font-weight: 600;
+    color: #eee;
+    opacity: .28;
+}
+.services-content:nth-child(odd){
+    background-color: #fff;
+
+}
+.services-content:nth-child(even){
+    background-color: #F5F7F8;
+}
+/* 设置了浏览器宽度不大于901px时 abc 显示200px宽度 */
+
+@media screen and (max-width: 500px) {
+    .header {
+        padding: 30px;
+    }
+    .services-content{
+        padding:55px 10px 70px;
+    }
+
+    .services-content-head .background-s{
+        font-size: 60px;
+        opacity: .38;
+    }
+
+}

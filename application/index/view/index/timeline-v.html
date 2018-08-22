@@ -1,0 +1,254 @@
+<!--<div class="wrapper">
+                <div class="timeline__item timeline__item&#45;&#45;0">
+                    <div class="timeline__item__station"></div>
+                    <div class="timeline__item__content">
+                        <h2 class="timeline__item__content__date">2013年5月</h2>
+                        <p class="timeline__item__content__description">上海欧游文化传播有限公司成立
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline__item timeline__item&#45;&#45;1">
+                    <div class="timeline__item__station"></div>
+                    <div class="timeline__item__content">
+                        <h2 class="timeline__item__content__date">2014年</h2>
+                        <p class="timeline__item__content__description">欧游团队首次提出4+4植入标准以及T~B体系，被行业沿用至今
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline__item timeline__item&#45;&#45;2">
+                    <div class="timeline__item__station"></div>
+                    <div class="timeline__item__content">
+                        <h2 class="timeline__item__content__date">2014年底</h2>
+                        <p class="timeline__item__content__description">与北京世纪鲲鹏正式启动上海鲲鹏合资项目
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline__item timeline__item&#45;&#45;3">
+                    <div class="timeline__item__station"></div>
+                    <div class="timeline__item__content">
+                        <h2 class="timeline__item__content__date">2015年5月</h2>
+                        <p class="timeline__item__content__description">正式推出核武风暴概念，助推了行业指数级发展</p>
+                    </div>
+                </div>
+                <div class="timeline__item timeline__item&#45;&#45;4">
+                    <div class="timeline__item__station"></div>
+                    <div class="timeline__item__content">
+                        <h2 class="timeline__item__content__date">2016年6月</h2>
+                        <p class="timeline__item__content__description">正式成立上海欧游文化传媒有限公司，启动欧游娱乐独立品牌
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline__item timeline__item&#45;&#45;5">
+                    <div class="timeline__item__station"></div>
+                    <div class="timeline__item__content">
+                        <h2 class="timeline__item__content__date">2017年1月</h2>
+                        <p class="timeline__item__content__description">提出古装剧植入的穿透打发
+                        </p>
+                    </div>
+                </div>
+
+            </div>-->
+<style>
+    /* _site-header.css */
+    /*.site-header {
+        text-align: center;
+        padding: 40px 0;
+
+    }
+    .site-header__title {
+        font-size: 36px;
+        color: #eee;
+    }*/
+
+    /* _wrapper.css */
+    /*.wrapper {
+        padding-left: 18px;
+        padding-right: 18px;
+        max-width: 1236px;
+        margin-left: auto;
+        margin-right: auto;
+    }*/
+
+
+    /*!* _timeline.css *!
+    .timeline {
+        position: relative;
+        margin: 30px auto;
+        padding: 60px 0;
+
+    }
+    .timeline::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 10%;
+        width: 2px;
+        height: 100%;
+        background-color: #eee;
+    }
+    @media (min-width: 800px){
+        .timeline::before{
+            left: 50%;
+            margin-left: -2px;
+        }
+    }
+    .timeline__item {
+        margin-bottom: 10px;
+        position: relative;
+    }
+    .timeline__item::after{
+        content: "";
+        clear: both;
+        display: table;
+    }
+    .timeline__item:nth-child(2n) .timeline__item__content {
+        float: right;
+    }
+    .timeline__item:nth-child(2n) .timeline__item__content::before {
+        content: '';
+        right: 40%;
+    }
+    @media (min-width: 800px){
+        .timeline__item:nth-child(2n) .timeline__item__content::before{
+            left: inherit;
+        }
+    }
+    .timeline__item:nth-child(2n) .timeline__item__content__date {
+        background-color: #ead36f;
+    }
+    .timeline__item:nth-child(2n) .timeline__item__content__description {
+        color: #ead36f;
+    }
+    .timeline__item:last-child {
+        margin-bottom: 0;
+    }
+    .timeline__item-bg {
+        -webkit-transition: all 1s ease-out;
+        transition: all 1s ease-out;
+        color: #fff;
+    }
+    .timeline__item-bg:nth-child(2n) .timeline__item__station {
+        background-color: #ead36f;
+    }
+    .timeline__item-bg:nth-child(2n) .timeline__item__content {
+        background-color: #ead36f;
+    }
+    .timeline__item-bg:nth-child(2n) .timeline__item__content::before {
+        background-color: #ead36f;
+    }
+    .timeline__item-bg:nth-child(2n) .timeline__item__content__description {
+        color: #fff;
+    }
+    .timeline__item-bg .timeline__item__station {
+        background-color: #cd9a0f;
+    }
+    .timeline__item-bg .timeline__item__content {
+        background-color: #cd9a0f;
+    }
+    .timeline__item-bg .timeline__item__content::before {
+        background-color: #cd9a0f;
+    }
+    .timeline__item-bg .timeline__item__content__description {
+        color: #fff;
+    }
+    .timeline__item__station {
+        background-color: #eee;
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        border-radius: 50%;
+        padding: 10px;
+        top: 0;
+        left: 10%;
+        margin-left: -28px;
+        border: 2px solid #eee;
+        -webkit-transition: all .3s ease-out;
+        transition: all .3s ease-out;
+        z-index: 1;
+    }
+    @media (min-width: 800px){
+        .timeline__item__station{
+            left: 50%;
+            margin-left: -15px;
+            width: 30px;
+            height: 30px;
+            padding: 10px;
+            border-width: 2px;
+        }
+    }
+    .timeline__item__content {
+        width: 80%;
+        background: #fff;
+        padding: 20px 30px;
+        border-radius: 6px;
+        float: right;
+        -webkit-transition: all .3s ease-out;
+        transition: all .3s ease-out;
+    }
+    @media (min-width: 800px){
+        .timeline__item__content{
+            width: 40%;
+            float: inherit;
+            padding: 20px 30px;
+        }
+    }
+    .timeline__item__content::before {
+        content: '';
+        position: absolute;
+        left: 10%;
+        background: #eee;
+        top: 15px;
+        width: 10%;
+        height: 2px;
+        z-index: 0;
+        -webkit-transition: all .3s ease-out;
+        transition: all .3s ease-out;
+    }
+    @media (min-width: 800px){
+        .timeline__item__content::before{
+            left: 40%;
+            top: 15px;
+            height: 2px;
+            margin-top: -2px;
+        }
+    }
+    .timeline__item__content__date {
+        margin: 0;
+        padding: 8px 12px;
+        font-size: 15px;
+        margin-bottom: 10px;
+        background-color: #cd9a0f;
+        color: #fff;
+        display: inline-block;
+        border-radius: 4px;
+        border: 2px solid #fff;
+    }
+    .timeline__item__content__description {
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 300;
+        color: #cd9a0f;
+    }
+    @media (min-width: 800px){
+        .timeline__item__content__description{
+            font-size: 14px;
+            line-height: 28px;
+        }
+    }*/
+
+    /* _site-footer.css */
+    .site-footer {
+        padding: 50px 0 200px 0;
+
+    }
+    .site-footer__text {
+        color: #e6e6e6;
+        font-size: 14px;
+        text-align: center;
+    }
+    .site-footer__text__link {
+        color: #eee;
+    }
+</style>

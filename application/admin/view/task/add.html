@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加计划任务</title>
+    <link rel="shortcut icon" href="__cIMG__/favicon.ico">
+    <link rel="Bookmark" href="__cIMG__/favicon.ico">
+    <link href="__aCSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__aCSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="__aCSS__/animate.min.css" rel="stylesheet">
+    <link href="__aCSS__/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="__aCSS__/style.min.css?v=4.1.0" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="__aCSS__/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link rel="stylesheet" href="__aCSS__/plugins/switchery/switchery.css" >
+    <link href="__aCSS__/common.css" rel="stylesheet">
+
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>添加计划任务</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" >
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> 是否启用：</label>
+                                <div class="input-group col-sm-7">
+                                    <input type="checkbox" class="js-switch js-check-click" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" data-original-title="必填项"></i> 计划任务名称：</label>
+                                <div class="input-group col-sm-7">
+                                    <input type="text" id="name" name="name" class="form-control" required="" aria-required="true">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" data-original-title="必填项"></i> 任务类名：</label>
+                                <div class="input-group col-sm-7">
+                                    <input type="text" id="class_name" name="class_name" class="form-control" required="" aria-required="true" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" data-original-title="必填项"></i> 任务方法名：</label>
+                                <div class="input-group col-sm-7">
+                                    <input type="text" id="method_name" name="method_name" class="form-control" required="" aria-required="true" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" data-original-title="必填项"></i> 类型：</label>
+                                <div class="input-group col-sm-7">
+                                    <select id="type" class="form-control" name="type" required="" aria-required="true">
+                                        {volist name="type_map" id="vo"}
+                                        <option value="{$key}" >{$vo}</option>
+                                        {/volist}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group type-inter">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" data-original-title="必填项"></i> 间隔时间：</label>
+                                <div class="input-group col-sm-7">
+                                    <input id="run_interval" type="text" name="run_interval" placeholder="请输入间隔秒数" class="form-control" required="" aria-required="true">
+                                </div>
+                            </div>
+
+                            <div class="form-group type-time hidden">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" data-original-title="必填项"></i> 定时时间：</label>
+                                <div class="input-group col-sm-7">
+                                    <input id="run_time" lay-key="10" type="text" name="run_time" class="layui-input form-control" required="" aria-required="true">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" data-original-title="必填项"></i> 进程数量：</label>
+                                <div class="input-group col-sm-7">
+                                    <input type="number" id="process_num" name="process_num" class="form-control" required="" aria-required="true" value="1"/>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <button class="btn btn-primary sub">提交</button>
+                                <a class="btn btn-default cancel" href="{:url('lists')}">取消</a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="__aJS__/jquery.min.js?v=2.1.4"></script>
+<script src="__aJS__/bootstrap.min.js?v=3.3.6"></script>
+<script src="__aJS__/content.min.js?v=1.0.0"></script>
+<script src="__aJS__/plugins/validate/jquery.validate.min.js"></script>
+<script src="__aJS__/plugins/validate/messages_zh.min.js"></script>
+<script src="__aJS__/plugins/iCheck/icheck.min.js"></script>
+<script src="__aJS__/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="__aJS__/plugins/layer/laydate5/laydate.js"></script>
+<script src="__aJS__/plugins/suggest/bootstrap-suggest.min.js"></script>
+<script src="__aJS__/plugins/layer/layer.min.js"></script>
+<script src="__aJS__/plugins/switchery/switchery.js"></script>
+<script type="text/javascript">
+
+    //表单提交
+    function toVaild(){
+
+    }
+
+    //表单验证
+    $(document).ready(function(){
+        $(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",});
+    });
+    $.validator.setDefaults({
+        highlight: function(e) {
+            $(e).closest(".form-group").removeClass("has-success").addClass("has-error")
+        },
+        success: function(e) {
+            e.closest(".form-group").removeClass("has-error").addClass("has-success")
+        },
+        errorElement: "span",
+        errorPlacement: function(e, r) {
+            e.appendTo(r.is(":radio") || r.is(":checkbox") ? r.parent().parent().parent() : r.parent())
+        },
+        errorClass: "help-block m-b-none",
+        validClass: "help-block m-b-none"
+    });
+
+</script>
+<script>
+
+    $(function () {
+        var jz;
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        //年月选择器
+        laydate.render({
+            elem: '#run_time'
+            ,type: 'time'
+        });
+
+        var type = $('#type');
+        var type_inter = $('.type-inter');
+        var type_time = $('.type-time');
+
+
+        type.on('change', function () {
+            var type_id = type.val();
+            switch (parseInt(type_id))
+            {
+                case 1:
+                    type_inter.removeClass('hidden');type_time.addClass('hidden');
+                    break;
+                case 2:
+                    type_inter.addClass('hidden');type_time.removeClass('hidden');
+                    break;
+                default:
+                    type_inter.removeClass('hidden');type_time.addClass('hidden');
+
+            }
+        });
+
+        var elem = document.querySelector('.js-switch');
+        var switchery = new Switchery(elem, {color: '#1ab394'});
+        var clickCheckbox = document.querySelector('.js-check-click');
+
+        /*提交*/
+        $('.sub').click(function () {
+            var url = "{:url('add')}";
+
+            if (clickCheckbox.checked) {
+                var is_send = 1;
+            }
+            else {
+                is_send = 0;
+            }
+
+            var name = $('#name').val(),
+                    class_name = $('#class_name').val(),
+                    method_name = $('#method_name').val(),
+                    type = $('#type').val(),
+                    run_interval = $('#run_interval').val(),
+                    run_time = $('#run_time').val(),
+                    process_num = $('#process_num').val()
+                    ;
+
+            var data = {
+                is_send:is_send,
+                name: name,
+                class_name: class_name,
+                method_name: method_name,
+                type:type,
+                run_interval: run_interval,
+                run_time:run_time,
+                process_num:process_num
+            };
+
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,// 你的formid
+                async: false,
+                beforeSend:function(){
+                    jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+                },
+                error: function(request) {
+                    layer.close(jz);
+                    swal("网络错误!", "", "error");
+                },
+                success: function(data) {
+                    //关闭加载层
+                    layer.close(jz);
+                    if(data.code == 1){
+                        swal(data.msg, "", "success");
+                        setTimeout(function () {
+                            location.href="{:url('lists')}";
+                        }, 1000);
+                    }else{
+                        swal(data.msg, "", "error");
+                    }
+
+                }
+            });
+
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

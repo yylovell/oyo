@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>休息日详情</title>
+    <link rel="shortcut icon" href="__cIMG__/favicon.ico">
+    <link rel="Bookmark" href="__cIMG__/favicon.ico">
+    <link href="__aCSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__aCSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="__aCSS__/animate.min.css" rel="stylesheet">
+    <link href="__aCSS__/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="__aCSS__/style.min.css?v=4.1.0" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="__aCSS__/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link rel="stylesheet" href="__aCSS__/plugins/switchery/switchery.css" >
+    <link href="__aCSS__/common.css" rel="stylesheet">
+
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>休息日详情</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" >
+                        <div class="col-sm-12">
+                            <div class="form-group learns">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" data-original-title="必填项"></i> 选择课程：</label>
+                                <div class="input-group col-sm-7">
+                                    <select id="learn_id" class="form-control" name="learn_id" disabled>
+                                        {volist name="learns" id="vo"}
+                                        <option value="{$vo.id}" {if condition="$data.learn_id eq $vo.id"}selected{/if}>{$vo.title}</option>
+                                        {/volist}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" data-original-title="必填项"></i> 选择日期：</label>
+                                <div class="input-group col-sm-7">
+                                    <input id="date" lay-key="4" type="text" placeholder="日期" name="date" class="layui-input form-control" disabled value="{$data.date}">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> 休息说明：</label>
+                                <div class="input-group col-sm-7">
+                                    <textarea id="des" type="text" class="form-control" name="des" rows="2"
+                                              cols="1" disabled>{$data.des}</textarea>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <a class="btn btn-primary cancel" href="{:url('lists')}">返回列表页</a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="__aJS__/jquery.min.js?v=2.1.4"></script>
+<script src="__aJS__/bootstrap.min.js?v=3.3.6"></script>
+<script src="__aJS__/content.min.js?v=1.0.0"></script>
+<script src="__aJS__/plugins/validate/jquery.validate.min.js"></script>
+<script src="__aJS__/plugins/validate/messages_zh.min.js"></script>
+<script src="__aJS__/plugins/iCheck/icheck.min.js"></script>
+<script src="__aJS__/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="__aJS__/plugins/layer/laydate5/laydate.js"></script>
+<script src="__aJS__/plugins/suggest/bootstrap-suggest.min.js"></script>
+<script src="__aJS__/plugins/layer/layer.min.js"></script>
+<script src="__aJS__/plugins/switchery/switchery.js"></script>
+<script>
+
+    $(function () {
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        //年月选择器
+        laydate.render({
+            elem: '#date'
+            ,type: 'date'
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>个人中心</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="__aIMG__/logo_music.jpg">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <link rel="stylesheet" href="__mCSS__/common.css">
+    <style>
+        .with-panel-left-reveal{
+            overflow-y: hidden;
+        }
+        header{
+            position: relative;
+            height: 8rem;
+            line-height: 8rem;
+            background-color: #242657;
+        }
+        .open-panel{
+            position: absolute;
+            padding: .5rem;
+            top: -2.5rem;
+            color: #fff;
+
+            -webkit-animation: anima 2s infinite linear;
+            animation: anima 2s infinite linear;
+        }
+        .no-data-msg{
+            font-size: .5rem;
+            margin-left: 1rem;
+        }
+        .card-p-des{
+            margin: .5rem 0;
+        }
+        .content{
+            margin-top: 8.05rem;
+            margin-bottom: 2.5rem;
+        }
+        .head-name {
+            position: relative;
+            top: 25%;
+            left: 50%;
+            -webkit-transform: translate(-50%);
+            -ms-transform: translate(-50%);
+            transform: translate(-50%);
+
+            width: 4rem;
+            height: 4rem;
+            line-height: 4rem;
+            text-align: center;
+            border-radius: 50%;
+
+            font-size: 1.5rem;
+            color: white;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-color: rgba(255, 255, 255, .3);
+        }
+        .head-name img{
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+        }
+        /*编辑用户图片*/
+        .head-name .wap-edit-photo{
+            position: absolute;
+            top:0;
+            left: 0;
+            bottom: 0;
+            right:0;
+            background-color: transparent;
+            z-index:1000;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .head-name .wap-edit-photo .avatar{
+            width: 100%;
+            height: 100%;
+            line-height: unset;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /*end*/
+        .info{
+            position: absolute;
+            bottom: 15px;
+            text-align: center;
+
+            font-size: .7rem;
+            width: 100%;
+            height: 20px;
+            overflow: auto;
+            color: rgba(255,255,255, .6);
+            clear: both;
+        }
+        .button-cancel{
+            height:1rem;
+            width: 1rem;
+            line-height: 1rem;
+            font-size: 12px;
+
+            position: absolute;
+            top:.3rem;
+            right: .05rem;
+
+        }
+        .card {
+            box-shadow: 0 0.05rem 0.1rem rgba(36,38,87,.3);
+        }
+        .panel{
+            background-color: rgba(36, 38, 87, .6);
+        }
+        .panel-left a{
+            color: #dfdfdf;
+        }
+        .panel-left .icon-right{
+            font-size: .7rem;
+        }
+        .mg5{
+            margin:1.2rem 0 1.2rem .5rem;
+            line-height: .9rem;
+        }
+
+        .panel-footer{
+            position: absolute;
+            left: 1rem;
+            bottom: 1rem;
+            font-size: .6rem;
+            font-weight: 300;
+            color: #dfdfdf;
+        }
+        .kf-btn{
+            position: absolute;
+            bottom: 2.8rem;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+
+            text-align: center;
+            line-height: 50px;
+            z-index: 9999;
+
+            color: #f3f4f5;
+            font-size: 11px;
+            background-color: rgba(36, 38, 87, .6);
+
+        }
+        .hidden{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+<div class="page-group">
+    <div class="kf-btn {eq name='kfconfig.status' value='0'}hidden{/eq}" data-group="{$kfgroup.id}">客服</div>
+    <!-- 单个page ,第一个.page默认被展示-->
+    <div class="page">
+        <!-- 标题栏 -->
+        <header>
+            <a class="icon icon-settings pull-left open-panel"></a>
+            <div class="head-name">
+                <img id="user-avatar" src="__UPLOADS__/{$student_info.user_avatar}" >
+                <div class="wap-edit-photo">
+                    <input id="main-file-photo" class="avatar"
+                           type='file' name='mainPhoto' alt="0"/>
+                </div>
+            </div>
+
+            <div class="info">
+
+            </div>
+
+        </header>
+        <div class="content">
+            <div class="content-block-title">我的课程</div>
+            {empty name="nowData"}
+            <p class="no-data-msg">暂无数据</p>
+            {else /}
+            {foreach $nowData as $v}
+            <div class="card cancel-card">
+                <span style="display: none;" class="vip_id">{$v.id}</span>
+                <div class="card-content" style="">
+                    <!--<i class="button-cancel">X</i>-->
+                    <div class="card-content-inner">
+                        <p class="card-p-des">
+                           预约日期：{$v.time_area}
+                        </p>
+                        <p class="card-p-des">
+                            课程名称：{$v.title}
+                        </p>
+                        <p class="card-p-des">
+                            预约等级：{$v.name}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {/foreach}
+            {/empty}
+
+
+            <div class="content-block-title">往期课程</div>
+            {empty name="expireData"}
+            <p class="no-data-msg">暂无数据</p>
+            {else /}
+            {foreach $expireData as $e}
+            <div class="card">
+                <span style="display: none;" class="vip_id">{$e.id}</span>
+                <div class="card-content">
+                    <div class="card-content-inner" style="background-color: #f7f7f7;">
+                        <p class="card-p-des">
+                            预约日期：{$e.time_area}
+                        </p>
+                        <p class="card-p-des">
+                            课程名称：{$e.title}
+                        </p>
+                        <p class="card-p-des">
+                            预约等级：{$e.name}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {/foreach}
+            {/empty}
+
+        </div>
+
+        <!-- 工具栏 -->
+        <nav class="bar bar-tab">
+            <a class="tab-item external" href="{:url('index/index')}">
+                <span class="icon icon-edit"></span>
+                <span class="tab-label">约课</span>
+            </a>
+            <a class="tab-item external active" href="{:url('student/index')}">
+                <span class="icon icon-me"></span>
+                <span class="tab-label">个人中心</span>
+            </a>
+        </nav>
+    </div>
+
+</div>
+
+<!-- popup, panel 等放在这里 -->
+<div class="panel-overlay"></div>
+<div class="panel panel-left panel-reveal">
+    <div class="content-block">
+        <p><a href="javascript:;"><i class="icon icon-me" style="margin-right: .3rem;margin-bottom: .1rem;"></i>  {$student_info.name}</a></p>
+        <p><hr></p>
+        <p class="prompt-ok mg5">
+            <a href="javascript:;">修改密码</a>
+            <a class="icon icon-right pull-right"></a>
+        </p>
+        <p id="login-out" class="mg5">
+            <a href="javascript:;" >退出登录</a>
+            <a class="icon icon-right pull-right"></a>
+        </p>
+    </div>
+    <div class="panel-footer">
+        <p class="panel-footer__text">— Copyright © 2018 Music Go! —</p>
+    </div>
+</div>
+
+
+<script type='text/javascript' src='__mJS__/common.js' charset='utf-8'></script>
+<script src="__aJS__/jquery.min.js?v=2.1.4"></script>
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script src="__cuJS__/layer/layer.js"></script>
+<script src="__cuJS__/whisper-tool.js"></script>
+<script>
+    $(function () {
+
+        var user_avatar = "{$student_info.user_avatar}";
+        var student = "{$student_info.name}";
+        var student_id = {$student_info.id};
+        /*修改头像*/
+
+        $('.avatar').on('change', function () {
+            var img = $('#user-avatar');
+            //创建数据对象
+            var data = new FormData();
+
+            var file = $(this)[0].files[0];
+            data.append('file', file);
+
+            $.ajax({
+                url: "{:url('upload/uploadImg')}",
+                datatype: "json",
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: "POST",
+                success: function (res) {
+
+                    //上传完毕回调
+                    if(res.code == 0){
+                        img.attr('src', '__UPLOADS__/' + res.data.src);
+                        $.ajax({
+                            url: "{:url('editAvatar')}",
+                            datatype: 'json',
+                            data: {'avatar': res.data.src},
+                            type: "POST",
+                            success: function (res2) {
+                                user_avatar = res.data.src;
+                            }
+                        });
+
+                    }else{
+                        console.log(res.msg);
+                    }
+
+                },
+                error: function (jqXHR) {
+                    console.log("发生错误：" + jqXHR.status);
+                }
+            });
+        });//异步上传图片代码
+
+        /*客服*/
+        var ws = new whisper();
+        /*var uid = parseInt(Math.random() * 40) + 1;*/
+
+        $('.kf-btn').click(function () {
+            var group = $(this).data('group');
+            ws.init({
+                id: student_id,
+                url: "{:url('chat')}",
+                name: student,
+                avatar: user_avatar,
+                group: group
+            });
+        });
+
+        $('.prompt-ok').click(function () {
+            $.prompt('修改你的登录密码?', function (value) {
+                $.ajax({
+                    type: 'POST',
+                    url: "{:url('editpasswd')}",
+                    dataType: 'json',
+                    data: {'password': value},
+                    success: function (data) {
+
+                        if (data.code == 1)
+                        {
+                            $.alert(data.msg, function () {
+                                $.closePanel()
+                            });
+                        }
+                        else
+                        {
+                            $.alert(data.msg);
+                        }
+                    },
+                    error: function (xhr, type) {
+                        $.alert('网络错误');
+                    }
+                });
+            });
+        });
+
+        $('#login-out').click(function () {
+            $.confirm('确定退出?', function () {
+                $.ajax({
+                    type: 'POST',
+                    url: "{:url('login/out')}",
+                    dataType: 'json',
+                    data: {},
+                    success: function (data) {
+
+                        if (data.code == 1)
+                        {
+                            location.href="{:url('login/index')}"
+                        }
+                        else
+                        {
+                            $.alert(data.msg);
+                        }
+                    },
+                    error: function (xhr, type) {
+                        $.alert('网络错误');
+                    }
+                });
+            });
+
+        });
+
+
+        /*$('.cancel-card').on('click', function () {
+            var vip_id = $(this).find('.vip_id').text();
+
+            var buttons1 = [
+                {
+                    text: '取消预约',
+                    color: 'danger',
+                    onClick: function() {
+                        $.ajax({
+                            type: 'GET',
+                            url: "{:url('cancel')}",
+                            dataType: 'json',
+                            data: {vip_id:vip_id},
+                            success: function (data) {
+
+                                if (data.code == 1)
+                                {
+                                    location.reload();
+                                }
+                                else
+                                {
+                                    $.alert(data.msg);
+                                }
+                            },
+                            error: function (xhr, type) {
+                                $.alert('网络错误');
+                            }
+                        });
+                    }
+                }
+            ];
+            var buttons2 = [
+                {
+                    text: '取消'
+                }
+            ];
+            var groups = [buttons1, buttons2];
+            $.actions(groups);
+        });*/
+    })
+</script>
+
+</body>
+</html>

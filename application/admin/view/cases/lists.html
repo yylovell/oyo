@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案例列表-欧游后台管理</title>
+    <link rel="shortcut icon" href="__cIMG__/favicon.ico">
+    <link rel="Bookmark" href="__cIMG__/favicon.ico">
+    <link href="__aCSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__aCSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="__aCSS__/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="__aCSS__/animate.min.css" rel="stylesheet">
+    <link href="__aCSS__/style.min.css?v=4.1.0" rel="stylesheet">
+    <link href="__aCSS__/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="__aCSS__/common.css" rel="stylesheet">
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>案例列表</h5>
+        </div>
+        <div class="ibox-content clearfix">
+            <div class="form-group clearfix col-sm-2 add-btn">
+                {if authCheck('cases/casesadd')}
+                <a href="./casesAdd">
+                    <button class="btn btn-outline btn-primary" type="button">添加案例</button>
+                </a>
+                {/if}
+            </div>
+            <!--搜索框开始-->
+            <form id='commentForm' role="form" method="post" class="form-inline" style="padding-left: 120px">
+                <div class="content clearfix m-b">
+                    <div class="form-group">
+                        <label>案例名称：</label>
+                        <input type="text" class="form-control" id="title" name="title">
+                    </div>
+                    <div class="form-group">
+                        <select id="type" class="form-control" name="type">
+                            <option value="1000">- 类型 -</option>
+                            {volist name="type_name_map" id="vo"}
+                            <option value="{$key}">{$vo.name}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="is_classical" class="form-control" name="is_classical">
+                            <option value="1000">- 是否经典案例 -</option>
+                            {volist name="is_classical_map" id="vo"}
+                            <option value="{$key}">{$vo}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="button" style="margin-top:5px" id="search"><strong>搜
+                            索</strong>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!--搜索框结束-->
+            <div class="hr-line-dashed"></div>
+
+            <div class="example-wrap">
+                <div class="example">
+                    <table id="cusTable"></table>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+<script src="__aJS__/jquery.min.js?v=2.1.4"></script>
+<script src="__aJS__/bootstrap.min.js?v=3.3.6"></script>
+<script src="__aJS__/content.min.js?v=1.0.0"></script>
+<script src="__aJS__/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="__aJS__/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="__aJS__/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="__aJS__/plugins/bootstrap-table/tableExport.js"></script>
+<script src="__aJS__/plugins/bootstrap-table/bootstrap-table-export.js"></script>
+
+<script src="__aJS__/plugins/suggest/bootstrap-suggest.min.js"></script>
+<script src="__aJS__/plugins/layer/laydate/laydate.js"></script>
+<script src="__aJS__/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="__aJS__/plugins/layer/layer.min.js"></script>
+<script type="text/javascript">
+    var COMMON_NOT = '{:app\\common\\controller\\Sys::COMMON_NOT}';
+    var COMMON_YES = '{:app\\common\\controller\\Sys::COMMON_YES}';
+
+    function initTable() {
+        var url = './lists';
+        //先销毁表格
+        $('#cusTable').bootstrapTable('destroy');
+        //初始化表格,动态从服务器加载数据
+        $("#cusTable").bootstrapTable({
+            method: "get",  //使用get请求到服务器获取数据
+            url: url, //获取数据的地址
+            showExport: true,
+            showRefresh: true,
+            showColumns:true,
+            exportDataType: "selected",
+            exportOptions:{
+                ignoreColumn: [0,11],  //忽略某一列的索引
+                fileName: '案例报表',  //文件名称设置
+                worksheetName: 'sheet1',  //表格工作区名称
+                tableName: '案例报表',
+            },
+            striped: true,  //表格显示条纹
+            pagination: true, //启动分页
+            pageSize: 10,  //每页显示的记录数
+            pageNumber: 1, //当前第几页
+            pageList: [5, 10, 15, 20, 25, 3000],  //记录数可选列表
+            sidePagination: "server", //表示服务端请求
+            //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+            //设置为limit可以获取limit, offset, search, sort, order
+            queryParamsType: "undefined",
+            columns: [{
+                checkbox: true
+            }, {
+                field: 'title',
+                title: '案例名称'
+            }, {
+                field: 'customer',
+                title: '植入品牌',
+                align:'center'
+            }, {
+                field: 'product',
+                title: '植入产品',
+                align:'center'
+            }, {
+                field: 'platform',
+                title: '首播平台',
+                align:'center'
+            }, {
+                field: 'actors',
+                title: '演员',
+                align:'center'
+            }, {
+                field: 'rank',
+                title: '内容等级',
+                align:'center'
+            }, {
+                field: 'is_classical',
+                title: '是否经典案例',
+                align:'center'
+            }, {
+                field: 'category.name',
+                title: '类型',
+                align:'center'
+            }, {
+                field: 'time',
+                title: '首播时间'
+            }, {
+                field: 'operate',
+                title: '操作',
+                align:'center'
+            }],
+            queryParams: function queryParams(params) {   //设置查询参数
+
+                var param = {
+                    pageNumber: params.pageNumber,
+                    pageSize: params.pageSize,
+                    searchText: {
+                        title: $('#title').val(),
+                        type: $('#type').val(),
+                        is_classical: $('#is_classical').val()
+                    }
+                };
+                return param;
+            },
+            onLoadSuccess: function () {  //加载成功时执行
+                /*layer.msg("加载成功", {time : 1000});*/
+            },
+            onLoadError: function () {  //加载失败时执行
+                layer.msg("加载数据失败");
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        //调用函数，初始化表格
+        initTable();
+
+        //当点击查询按钮的时候执行
+        $("#search").bind("click", initTable);
+    });
+
+    function casesDel(id) {
+        layer.confirm('确认删除该案例?', {icon: 3, title: '提示'}, function (index) {
+            //do something
+            $.getJSON('./casesDel', {'id': id}, function (res) {
+                if (res.code == 1) {
+                    initTable();
+                } else {
+                    layer.alert(res.msg);
+                }
+            });
+
+            layer.close(index);
+        })
+
+    }
+
+    function status(id, value){
+        if (value == COMMON_NOT){
+            var msg = '首页显示';
+        }
+        else
+        {
+            msg = '首页不显示';
+        }
+
+        layer.confirm('确认'+ msg +'?', {icon: 3, title:'提示'}, function(index){
+            //do something
+            $.getJSON('./status', {'id' : id}, function(res){
+                if(res.code == 1){
+                    initTable();
+                }else{
+                    layer.alert(res.msg);
+                }
+            });
+
+            layer.close(index);
+        })
+
+    }
+</script>
+</body>
+</html>

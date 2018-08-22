@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页图片配置-欧游后台管理</title>
+    <link rel="shortcut icon" href="__cIMG__/favicon.ico">
+    <link rel="Bookmark" href="__cIMG__/favicon.ico">
+    <link href="__aCSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__aCSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="__aCSS__/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="__aCSS__/animate.min.css" rel="stylesheet">
+    <link href="__aCSS__/style.min.css?v=4.1.0" rel="stylesheet">
+    <link href="__aCSS__/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="__aCSS__/common.css" rel="stylesheet">
+    <style>
+        .thumbnail{
+            background-color: rgba(47, 64, 80, .5) !important;
+        }
+        .thumbnail .caption{
+            background-color: #F5F7F8 !important;
+        }
+        .title{
+            color: #535353;
+        }
+    </style>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>首页图片配置</h5>
+        </div>
+        <div class="ibox-content clearfix">
+
+            <div class="example-wrap col-sm-12">
+                <div class="thumbnail">
+                    <img id="photo-r1" src="__UPLOADS__/{$partPCPhoto.photo}" alt="">
+                    <div class="caption">
+                        <h3 class="title">{$partPCPhoto.des}</h3>
+                        <p class="title">长宽比例为：936*257</p>
+                        <p>
+                            <span class="btn btn-primary btn-file">
+                                上传<input id="photo1" type="file" multiple="multiple">
+                            </span>
+                            <input id="id1" type="text" class="hidden" value="{$partPCPhoto.id}">
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-wrap col-sm-3">
+                <div class="thumbnail">
+                    <img id="photo-r2" src="__UPLOADS__/{$partMBPhoto.photo}" alt="">
+                    <div class="caption">
+                        <h3 class="title">{$partMBPhoto.des}</h3>
+                        <p class="title">长宽比例为：620*750</p>
+                        <p>
+                            <span class="btn btn-primary btn-file">
+                                上传<input id="photo2" type="file" multiple="multiple">
+                            </span>
+                            <input id="id2" type="text" class="hidden" value="{$partMBPhoto.id}">
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-wrap col-sm-5">
+                <div class="thumbnail">
+                    <img id="photo-r" src="__UPLOADS__/{$newsPhoto.photo}" alt="">
+                    <div class="caption">
+                        <h3 class="title">{$newsPhoto.des}</h3>
+                        <p class="title">长宽比例为：621*300</p>
+                        <p>
+                            <span class="btn btn-primary btn-file">
+                                上传<input id="photo" type="file" multiple="multiple">
+                            </span>
+                            <input id="id" type="text" class="hidden" value="{$newsPhoto.id}">
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-wrap col-sm-3">
+                <div class="thumbnail">
+                    <img id="photo-r3" src="__UPLOADS__/{$pubPhoto.photo}" alt="">
+                    <div class="caption">
+                        <h3 class="title">{$pubPhoto.des}</h3>
+                        <p class="title">长宽比例为：等比例正方形</p>
+                        <p>
+                            <span class="btn btn-primary btn-file">
+                                上传<input id="photo3" type="file" multiple="multiple">
+                            </span>
+                            <input id="id3" type="text" class="hidden" value="{$pubPhoto.id}">
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+<script src="__aJS__/jquery.min.js?v=2.1.4"></script>
+<script src="__aJS__/bootstrap.min.js?v=3.3.6"></script>
+<script src="__aJS__/content.min.js?v=1.0.0"></script>
+
+<script src="__aJS__/plugins/suggest/bootstrap-suggest.min.js"></script>
+<script src="__aJS__/plugins/layer/laydate/laydate.js"></script>
+<script src="__aJS__/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="__aJS__/plugins/layer/layer.min.js"></script>
+<script type="text/javascript">
+    var IMG_IS_NEWS = '{:app\\common\\controller\\Sys::IMG_IS_NEWS}';
+    var IMG_IS_PARTNER = '{:app\\common\\controller\\Sys::IMG_IS_PARTNER}';
+    var IMG_IS_PUBLIC = '{:app\\common\\controller\\Sys::IMG_IS_PUBLIC}';
+    var IS_PC = '{:app\\common\\controller\\Sys::IS_PC}';
+    var IS_MOBILE = '{:app\\common\\controller\\Sys::IS_MOBILE}';
+
+    $(document).ready(function () {
+
+        var jz;
+        var up_path = '__UPLOADS__';
+        var up_path_length = parseInt(up_path.length) + 1;
+
+        $('#photo').on('change', function () {
+            //创建数据对象
+            var data = new FormData();
+
+            var file = $(this)[0].files[0];
+            data.append('upload_file', file);
+
+            $.ajax({
+                url: "{:url('addPhoto')}",
+                datatype: "json",
+                data: data,
+                type: "POST",
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function () {
+                    jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+                },
+                error: function (request) {
+                    layer.close(jz);
+                    swal("网络错误!", "", "error");
+                },
+                success: function (data) {
+                    //关闭加载层
+                    layer.close(jz);
+                    if (data.code == 1) {
+
+                        var photo_path = '__UPLOADS__/' + data.data;
+                        var id = $('#id').val();
+                        $('#photo-r').attr('src', photo_path);
+                        saveImg({
+                            id: id,
+                            photo: photo_path.substring(up_path_length),
+                            type: IMG_IS_NEWS,
+                            mobile: IS_PC
+                        })
+                    } else {
+                        swal(data.msg, "", "error");
+                    }
+
+                }
+            });
+        });//异步上传图片代码
+
+        $('#photo1').on('change', function () {
+            //创建数据对象
+            var data = new FormData();
+
+            var file = $(this)[0].files[0];
+            data.append('upload_file', file);
+
+            $.ajax({
+                url: "{:url('addPhoto')}",
+                datatype: "json",
+                data: data,
+                type: "POST",
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function () {
+                    jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+                },
+                error: function (request) {
+                    layer.close(jz);
+                    swal("网络错误!", "", "error");
+                },
+                success: function (data) {
+                    //关闭加载层
+                    layer.close(jz);
+                    if (data.code == 1) {
+
+                        var photo_path = '__UPLOADS__/' + data.data;
+                        var id1 = $('#id1').val();
+                        $('#photo-r1').attr('src', photo_path);
+                        saveImg({
+                            id:id1,
+                            photo: photo_path.substring(up_path_length),
+                            type: IMG_IS_PARTNER,
+                            mobile: IS_PC
+                        })
+                    } else {
+                        swal(data.msg, "", "error");
+                    }
+
+                }
+            });
+        });//异步上传图片代码
+
+        $('#photo2').on('change', function () {
+            //创建数据对象
+            var data = new FormData();
+
+            var file = $(this)[0].files[0];
+            data.append('upload_file', file);
+
+            $.ajax({
+                url: "{:url('addPhoto')}",
+                datatype: "json",
+                data: data,
+                type: "POST",
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function () {
+                    jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+                },
+                error: function (request) {
+                    layer.close(jz);
+                    swal("网络错误!", "", "error");
+                },
+                success: function (data) {
+                    //关闭加载层
+                    layer.close(jz);
+                    if (data.code == 1) {
+
+                        var photo_path = '__UPLOADS__/' + data.data;
+                        var id2 = $('#id2').val();
+                        $('#photo-r2').attr('src', photo_path);
+                        saveImg({
+                            id: id2,
+                            photo: photo_path.substring(up_path_length),
+                            type: IMG_IS_PARTNER,
+                            mobile: IS_MOBILE
+                        })
+                    } else {
+                        swal(data.msg, "", "error");
+                    }
+
+                }
+            });
+        });//异步上传图片代码
+
+        $('#photo3').on('change', function () {
+            //创建数据对象
+            var data = new FormData();
+
+            var file = $(this)[0].files[0];
+            data.append('upload_file', file);
+
+            $.ajax({
+                url: "{:url('addPhoto')}",
+                datatype: "json",
+                data: data,
+                type: "POST",
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function () {
+                    jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+                },
+                error: function (request) {
+                    layer.close(jz);
+                    swal("网络错误!", "", "error");
+                },
+                success: function (data) {
+                    //关闭加载层
+                    layer.close(jz);
+                    if (data.code == 1) {
+
+                        var photo_path = '__UPLOADS__/' + data.data;
+                        var id3 = $('#id3').val();
+                        $('#photo-r3').attr('src', photo_path);
+                        saveImg({
+                            id: id3,
+                            photo: photo_path.substring(up_path_length),
+                            type: IMG_IS_PUBLIC,
+                            mobile: IS_PC
+                        })
+                    } else {
+                        swal(data.msg, "", "error");
+                    }
+
+                }
+            });
+        });//异步上传图片代码
+
+        function saveImg(data) {
+            var url = "{:url('')}";
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data,// 你的formid
+                async: false,
+                error: function (request) {
+                    swal("网络错误!", "", "error");
+                },
+                success: function (data) {
+                    if (data.code == 1) {
+                        swal(data.msg, "", "success");
+
+                    } else {
+                        swal(data.msg, "", "error");
+                    }
+
+                }
+            });
+        }
+    });
+
+</script>
+</body>
+</html>

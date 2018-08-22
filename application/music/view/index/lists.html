@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Music Go！选择课程</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="__aIMG__/logo_music.jpg">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <link rel="stylesheet" href="__mCSS__/common.css">
+
+    <style>
+
+        .list-block {
+            margin: .5rem 0;
+        }
+        .list-block .item-text{
+            height: 0;
+        }
+        .verb-block{
+            height: 15px;
+            background-color: #EFEFF4;
+        }
+        .list-block .item-subtitle {
+            font-size: .55rem;
+            margin-top: .25rem;
+        }
+    </style>
+</head>
+<body>
+<div class="page-group">
+    <!-- 单个page ,第一个.page默认被展示-->
+    <div class="page">
+        <!-- 标题栏 -->
+        <!--<header class="bar bar-nav" style="background-color: #242657;">
+            <h1 class="title" style="color: #fff;">选择课程</h1>
+        </header>-->
+
+
+        <!-- 这里是页面内容区 -->
+        <div class="content">
+            {empty name="data"}
+            <div class="content-block">
+                暂无课程预约
+            </div>
+            {else/}
+            {foreach $data as $v}
+            <div class="list-block media-list">
+                <ul>
+                    <li>
+                        <a href="{:url('detail', ['learn_id' => $v.id])}" class="item-link item-content external">
+                            <div class="item-media"><img src="__UPLOADS__/{$v.photo}" style='width: 4rem;'></div>
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title">{$v.title}</div>
+                                    <div class="item-after"></div>
+                                </div>
+                                <div class="item-subtitle">{$v.info}</div>
+                                <div class="item-text"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            {/foreach}
+            {/empty}
+
+            <div class="content-block" style="text-align: center;font-size: .77rem;">
+                更多音乐课程，敬请期待...
+            </div>
+
+        </div>
+
+        <!-- 工具栏 -->
+        <nav class="bar bar-tab">
+            <a class="tab-item external active" href="{:url('index/lists')}">
+                <span class="icon icon-edit"></span>
+                <span class="tab-label">约课</span>
+            </a>
+            <a class="tab-item external" href="{:url('student/index')}">
+                <span class="icon icon-me"></span>
+                <span class="tab-label">个人中心</span>
+            </a>
+        </nav>
+    </div>
+</div>
+
+
+<script type='text/javascript' src='__mJS__/common.js' charset='utf-8'></script>
+
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+
+<script>
+
+</script>
+</body>
+</html>

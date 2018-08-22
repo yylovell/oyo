@@ -1,0 +1,111 @@
+.add-btn{
+    margin-top: 5px;
+}
+.fixed-table-toolbar .bars,
+.fixed-table-toolbar .columns,
+.fixed-table-toolbar .search {
+    position: absolute;
+    top: 78px;
+    right: 45px;
+}
+.example-wrap .keep-open .dropdown-toggle{
+    background-color: rgb(194, 194, 194);
+}
+/*.example-wrap .export .dropdown-toggle{
+    border-color: transparent;
+    background-color: #F0F0F0;
+}*/
+.btn-file{
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file]{
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+.thumbnail{
+    padding: 0 !important;
+    border: 0 !important;
+}
+
+/**/
+.switch-check+label{border:1px solid #ddd}
+.switch-check{
+    display:none
+}
+.switch-check+label{
+    display:inline-block;
+    vertical-align:middle;
+    width:60px;height:34px;
+    background:#fafafa;
+    border-radius:22px;
+    cursor:pointer;
+    position:relative;
+    -webkit-transition:all .3s ease-out;
+    transition:all .3s ease-out
+}
+.switch-check+label:after{
+    content:"";
+    position:absolute;
+    top:0;left:0;
+    width:32px;height:32px;
+    border:1px solid #ddd;
+    border-radius:22px;
+    background:#fff;
+    box-shadow:0 1px 3px rgba(0,0,0,.4);
+    -webkit-transition:all .3s ease-out;
+    transition:all .3s ease-out
+}
+.switch-check.disabled+label,
+.switch-check:disabled+label{
+    cursor:not-allowed;
+    opacity:.75
+}
+.switch-check:checked+label{
+    background:rgb(26, 179, 148);
+    -webkit-transition:all .3s ease-in;
+    transition:all .3s ease-in
+}
+.switch-check:checked+label:after{
+    top:1px;left:27px;width:30px;height:30px;
+    -webkit-transition:all .3s ease-in;
+    transition:all .3s ease-in
+}
+.switch-check.switch-check-lg+label{
+    width:80px;height:46px
+}
+.switch-check.switch-check-lg+label:after{
+    width:44px;height:44px
+}
+.switch-check.switch-check-lg:checked+label:after{
+    top:1px;left:35px;width:42px;height:42px
+}
+.switch-check.switch-check-sm+label{
+    width:50px;height:30px
+}
+.switch-check.switch-check-sm+label:after{
+    width:28px;height:28px
+}
+.switch-check.switch-check-sm:checked+label:after{
+    top:1px;left:21px;width:26px;height:26px
+}
+.switch-check.switch-check-xs+label{
+    width:40px;height:20px
+}
+.switch-check.switch-check-xs+label:after{
+    width:18px;height:18px
+}
+.switch-check.switch-check-xs:checked+label:after{
+    top:1px;left:21px;width:16px;height:16px
+}

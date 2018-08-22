@@ -1,0 +1,23 @@
+{__NOLAYOUT__}
+{empty name="op_lists"}
+<li class="li msg" style="text-align: center;">暂无未读日志</li>
+<li class="divider li"></li>
+{else/}
+{volist name="op_lists" id="v" length='3'}
+<li class="li msg">
+    <div class="dropdown-messages-box">
+        <a href="#" class="pull-left">
+            <p>{$v.username}</p>
+            <p>{$v.level}</p>
+        </a>
+        <div class="media-body">
+            <p>{$v.log}</p>
+            <small class="text-muted log-time">{$v.time}</small>
+            <small class="text-muted sign-read hidden" data-id="{$v.id}">标记为已读</small>
+        </div>
+    </div>
+</li>
+<li class="divider li"></li>
+{/volist}
+{/empty}
+<script>var log_num = {$log_num};</script>

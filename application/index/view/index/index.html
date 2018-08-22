@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{$foot.title}</title>
+    <meta name="description" content="{$foot.seo_des}">
+    <meta name="keywords" content="{$foot.seo_keywords}"/>
+    <meta name="author" content="yy">
+    <link rel="shortcut icon" href="__cIMG__/favicon.ico">
+    <link rel="Bookmark" href="__cIMG__/favicon.ico">
+    <link href="__aCSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__aCSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+
+    <link href="__aCSS__/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="__cCSS__/jpreloader.css">
+    <link rel="stylesheet" href="__cCSS__/timeline2.css">
+    <link rel="stylesheet" href="__cCSS__/common.css">
+    <link rel="stylesheet" href="__iCSS__/index.css">
+    <link rel="stylesheet" href="__iCSS__/style.css">
+</head>
+
+<body>
+<!-- This section is for Splash Screen -->
+<section id="jSplash">
+    <section class="selected">
+        <h1>正在加载网站资源</h1>
+    </section>
+    <section>
+        <h1>专业 前沿 洞察 娱乐</h1>
+    </section>
+</section>
+<!-- End of Splash Screen -->
+
+<!-- 导航-->
+{include file='common@common/tab'}
+
+<div id="scrolltohome" class="carousel slide" data-ride="carousel" data-interval="4000">
+
+    <ol class="carousel-indicators">
+        {foreach name="slider" item="s" key="k"}
+        {if condition=" $k eq 0 "}
+        <li data-target="#scrolltohome" data-slide-to="{$k}" class="active"></li>
+        {else/}
+        <li data-target="#scrolltohome" data-slide-to="{$k}"></li>
+        {/if}
+        {/foreach}
+    </ol>
+    <div class="carousel-inner">
+
+        {foreach name="slider" item="s" key="k"}
+        {if condition=" $k eq 0 "}
+        <div class="item active" style="overflow: hidden;">
+            {else/}
+            <div class="item" style="overflow: hidden;">
+                {/if}
+                <a href="{$s.url}">
+                    <img src="__UPLOADS__/{$s.photo}" alt="">
+                </a>
+                {if condition=" $s.type eq 6 "}
+                <div class="item-title" style="background-color: {$s.b_color}">{$s.des}</div>
+                {/if}
+            </div>
+            {/foreach}
+
+        </div>
+
+        <a class="left carousel-control" href="#scrolltohome" role="button" data-slide="prev">
+            <i class="fa fa-chevron-circle-left glyphicon-chevron-left"></i>
+        </a>
+        <a class="right carousel-control" href="#scrolltohome" role="button" data-slide="next">
+            <i class="fa fa-chevron-circle-right glyphicon-chevron-right"></i>
+        </a>
+    </div>
+</div>
+
+<!-- 内容-->
+<div class="container-fluid">
+
+    <!-- 我们的服务-->
+    <div class="row service text-center" id="scrolltoservice">
+        <div class="col-md-12">
+            {foreach name='serviceintr' item='service'}
+            <div class="row service-{$service|count} text-center">
+                {foreach name='service' item='v'}
+                <div class="col-md-{$service|serviceLength} col-xs-12 service-box service-box-{$key} {if condition='$v.is_white==1'} is-white{/if} aniview" av-animation="fadeInLeft">
+
+                    <div class="service-a">
+                        <i class="fa fa-{$v.tag}"></i>
+                    </div>
+
+                    <h4>{$v.title}</h4>
+                    <p>{$v.des}</p>
+                </div>
+                {/foreach}
+            </div>
+            {/foreach}
+        </div>
+        <div class="col-md-12 more-btn-warp aniview" av-animation="fadeInUp">
+            <a href="{:url('services/lists')}" class="more-btn btn btn-default">{$Think.lang.ServiceDetail}</a>
+        </div>
+    </div>
+
+    <!-- 经典案例-->
+    <div class="row cases text-center" id="scrolltocases">
+        <div class="header-warp" >
+            <h3 class="aniview" av-animation="fadeInUp">{$Think.lang.Cases}</h3>
+            <hr class="aniview" av-animation="fadeInUp">
+        </div>
+
+        <div class="col-md-12 cases-warp">
+            <ul class="nav nav-pills aniview" role="tablist" av-animation="fadeInUp">
+                {foreach name='type_name_map' item='vo'}
+                <li id="tab{$key}"><a href="#tab-{$key}" role="tab" data-toggle="tab">{$vo.name}</a></li>
+                {/foreach}
+            </ul>
+
+            <div class="tab-content row">
+                {foreach name='type_name_map' item='vo'}
+                <div class="tab-pane fade" id="tab-{$key}">
+                    {foreach name='cases' item='case' key="k"}
+                    {if condition=" $case.type ==  $key"}
+                    <div class="col-md-4 col-xs-12 aniview cases-one" av-animation="fadeInUp">
+                        {if condition=" !$case.photo1 "}
+                        <a class="thumbnail" href="javascript:;" title="{$case.title}">
+                            <img class="lazy" src="__iIMG__/cases-z.png" data-original="__UPLOADS__/{$case.photo}"
+                                 alt="{$case.title}海报">
+                            <div class="thum-card text-center">
+                                <div class="thum-card-header">
+                                    <h3>{$case.title}</h3>
+                                    <p>{$case.customer}</p>
+                                </div>
+                                <div class="thum-card-des">
+                                    即将呈现
+                                </div>
+
+                            </div>
+                        </a>
+                        {else /}
+                        <a class="thumbnail" href="{:url('cases/detail@www',['id'=>$case.id])}" title="{$case.title}">
+                            <img class="lazy" src="__iIMG__/cases-z.png" data-original="__UPLOADS__/{$case.photo}"
+                                 alt="{$case.title}海报">
+                            <div class="thum-card text-center">
+                                <div class="thum-card-header">
+                                    <h3>{$case.title}</h3>
+                                    <p>{$case.customer}</p>
+                                </div>
+                                <div class="thum-card-btn">
+                                    <i class="fa fa-search"></i>
+                                </div>
+
+                            </div>
+                        </a>
+                        {/if}
+                    </div>
+                    {/if}
+                    {/foreach}
+                </div>
+                {/foreach}
+            </div>
+
+        </div>
+
+        <div class="col-md-12 more-btn-warp aniview" av-animation="fadeInUp">
+            <a href="{:url('cases/lists')}" class="more-btn btn btn-default">{$Think.lang.MoreCases}</a>
+        </div>
+
+
+    </div>
+    <!-- 新闻动态-->
+    <div class="row news text-center" id="scrolltonews">
+
+        <span class="background-news">NEW</span>
+
+        <div class="header-warp">
+            <h3 class="aniview" av-animation="fadeInUp">{$Think.lang.News}</h3>
+            <hr class="aniview" av-animation="fadeInUp">
+        </div>
+        <div class="col-md-6 col-xs-12 news-left">
+            <div class="news-card aniview" av-animation="fadeInUp">
+                <div class="thumbnail">
+                    {if condition=" $one.photo "}
+                    <img src="__UPLOADS__/{$one.photo}" alt="新闻图">
+                    {else /}
+                    <img src="__UPLOADS__/{$newsPhoto.photo}" alt="新闻图">
+                    {/if}
+                </div>
+
+                <div class="media">
+                    <div class="media-left">
+
+                    </div>
+                    <div class="media-body">
+                        <div class="content-header">
+                            <a class="media-heading" target="_parent"
+                               href="{:url('news/detail@www',['id'=>$one.id])}" title="查看新闻详情">{$one.title}</a>
+                            <p>{$one.discrpte}</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6 col-xs-12 news-right">
+            {foreach name='news' item='v' key='k'}
+            <div class="news-card aniview news-card-{$k}" av-animation="fadeInUp">
+                <div class="media">
+                    <div class="media-left">
+                        <div class="btn-group-vertical" role="group" aria-label="...">
+                            <button type="button" class="btn btn-sm"><strong>{$v.mouth} {$v.day}</strong></button>
+                            <button type="button" class="btn btn-sm">{$v.year}</button>
+                        </div>
+
+                    </div>
+                    <div class="media-body">
+                        <div class="content-header">
+                            <a class="media-heading" target="_parent" href="{:url('news/detail@www',['id'=>$v.id])}"
+                               title="查看新闻详情">{$v.title}</a>
+                            <p>{$v.discrpte}</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {/foreach}
+        </div>
+
+        <div class="col-md-12 col-xs-12 more-btn-warp aniview" av-animation="fadeInUp">
+            <a href="{:url('news/lists')}" class="more-btn btn btn-default">{$Think.lang.MoreNews}</a>
+        </div>
+
+    </div>
+
+    <!-- 关于我们-->
+    <div class="row about text-center" id="scrolltoabout">
+        <!--<div class="jiao jiao-bottom"></div>-->
+
+
+        <div class="col-md-6 col-xs-12 about-left">
+            <img class="seo-img" src="__iIMG__/logo121X75.jpg" alt="">
+        </div>
+        <div class="col-md-6 col-xs-12 content-about aniview" av-animation="bounceInRight">
+            <div class="header-warp text-center">
+                <h3 class="aniview" av-animation="fadeInUp">{$Think.lang.AboutUs}</h3>
+                <hr class="aniview" av-animation="fadeInUp">
+                <p>{$foot.seo_des}</p>
+            </div>
+
+            <div class="section-list-box">
+                <div class="timeline-container timeline-theme-2">
+                    <div class="timeline timeline-small-box timeline-2">
+                        {foreach name='events' item='v'}
+                        <div class="theme-card" data-time="{$v.time}">
+                            <button class="btn btn-detail">{$v.time_des}</button>
+                            {foreach name='v.des' item='d'}
+                            <p>{$d}</p>
+                            {/foreach}
+                        </div>
+                        {/foreach}
+                    </div>
+                </div><!-- /.timeline-container -->
+            </div><!-- /.section-list-box -->
+        </div>
+
+    </div>
+    <div class="row about-2 text-center">
+        <div class="jiao jiao-top"></div>
+
+        <div class="col-md-3 col-xs-12 about-card about-card-1 about-hr aniview" av-animation="fadeInUp">
+            <h4>企业愿景</h4>
+            {foreach name="foot.company_hope" item="v"}
+            <p>{$v}</p>
+            {/foreach}
+        </div>
+        <div class="col-md-3 col-xs-12 about-card about-card-2 about-hr aniview" av-animation="fadeInUp">
+            <h4>企业使命</h4>
+            {foreach name="foot.company_mission" item="v"}
+            <p>{$v}</p>
+            {/foreach}
+        </div>
+        <div class="col-md-3 col-xs-12 about-card about-card-3 about-hr aniview" av-animation="fadeInUp">
+            <h4>企业理念</h4>
+            {foreach name="foot.company_belief" item="v"}
+            <p>{$v}</p>
+            {/foreach}
+        </div>
+        <div class="col-md-3 col-xs-12 about-card about-card-4 aniview" av-animation="fadeInUp">
+            <h4>核心价值观</h4>
+            {foreach name="foot.key_value" item="v"}
+            <p>{$v}</p>
+            {/foreach}
+        </div>
+    </div>
+
+    <!-- 品牌合作-->
+    <div class="row brands text-center" id="scrolltobrands">
+
+        <div class="brands-warp col-md-12">
+            <div class="header-warp">
+                <h3 class="aniview brands-header" av-animation="fadeInUp">{$Think.lang.Brands}</h3>
+                <hr class="aniview brands-hr" av-animation="fadeInUp">
+            </div>
+            <div class="text-center aniview" av-animation="bounceInLeft">
+                <img class="lazy" src="__iIMG__/brand/pc-z.png" data-original="__UPLOADS__/{$pcPhoto.photo}" alt="合作片方图">
+                <span class="hidden mb-photo">__UPLOADS__/{$mbPhoto.photo}</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 服务条款-->
+    <div class="cd-section row">
+        <h1 class="aniview" av-animation="fadeInUp"><i class="fa fa-quote-left"></i></h1>
+        <div class="aniview ceo" av-animation="fadeInUp">
+            <p>{$foot.ceo_speak}</p>
+            <h4 style="margin-left: 20px;"> {$foot.ceo}</h4>
+            <p>CEO of company</p>
+        </div>
+        <svg class="action-bg" xmlns="http://www.w3.org/2000/svg">
+            <g>
+                <defs>
+                    <linearGradient id="Gradient1">
+                        <stop offset="0%" stop-color="#fff" stop-opacity="0"></stop>
+                        <stop offset="99%" stop-color="#fff" stop-opacity="0.2"></stop>
+                        <stop offset="99.9%" stop-color="#fff" stop-opacity="0.8"></stop>
+                        <stop offset="100%" stop-color="#fff" stop-opacity="0.8"></stop>
+                    </linearGradient>
+                </defs>
+                <!--第1行三种线条 start-->
+                <rect x="555.164" y="30" width="200" height="2" stroke="white" stroke-width="0" fill="url(#Gradient1)">
+                    <animate attributeName="x" from="0" by="100%" begin="0" dur="15s"
+                             repeatCount="indefinite"></animate>
+                </rect>
+
+
+                <!--第1行三种线条 end-->
+                <!--第2行三种线条 start-->
+                <rect x="-300" y="60" width="300" height="2" stroke="white" stroke-width="0" fill="url(#Gradient1)">
+                    <animate attributeName="x" from="0" by="100%" begin="25s" dur="15s"
+                             repeatCount="indefinite"></animate>
+                </rect>
+
+                <!--第2行三种线条 end-->
+                <!--第3行三种线条 start-->
+                <rect x="0" y="100" width="100" height="2" stroke="white" stroke-width="0" fill="url(#Gradient1)">
+                    <animate attributeName="x" from="0" by="100%" begin="5s" dur="15s"
+                             repeatCount="indefinite"></animate>
+                </rect>
+
+
+                <!--第3行三种线条 end-->
+                <!--第4行三种线条 start-->
+                <rect x="-150" y="150" width="100" height="2" stroke="white" stroke-width="0" fill="url(#Gradient1)">
+                    <animate attributeName="x" from="0" by="100%" begin="0" dur="15s"
+                             repeatCount="indefinite"></animate>
+                </rect>
+
+
+                <!--第4行三种线条 end-->
+                <!--第5行三种线条 start-->
+                <rect x="-250" y="230" width="150" height="2" stroke="white" stroke-width="0" fill="url(#Gradient1)">
+                    <animate attributeName="x" from="0" by="100%" begin="0" dur="25s"
+                             repeatCount="indefinite"></animate>
+                </rect>
+
+            </g>
+        </svg>
+
+    </div>
+
+</div>
+<!-- 页脚-->
+{include file='common@common/footer'}
+
+
+<script src="__aJS__/jquery.min.js?v=2.1.4"></script>
+<script src="__cJS__/jquery.cookie.js"></script>
+<script src="__aJS__/bootstrap.min.js?v=3.3.6"></script>
+<!--动画-->
+<script src="__cJS__/jquery.aniview.min.js"></script>
+<!--懒加载-->
+<script src="__cJS__/jquery.lazyload.min.js"></script>
+<!--loading效果-->
+<script src="__cJS__/jpreloader.min.js"></script>
+
+<script src="__cJS__/common.js"></script>
+
+<!--时间轴-->
+<script src="__cJS__/timeline.js"></script>
+
+<!--向上按钮-->
+<script src="__cJS__/gotop.js"></script>
+
+<script src="__iJS__/index.js"></script>
+<script>
+
+    /*var CHECK_LANG = "{:url('index/lang')}";*/
+    var ip_url = "{:url('log/ip')}";
+    $('.cases .cases-warp ul li:first-child').addClass('active');
+    $('.cases .tab-content .tab-pane').first().addClass('in active');
+
+    $('.service .service-4 .service-box-0').attr('av-animation', 'fadeInLeft');
+    $('.service .service-4 .service-box-1').attr('av-animation', 'fadeInLeft');
+    $('.service .service-4 .service-box-2').attr('av-animation', 'fadeInRight');
+    $('.service .service-4 .service-box-3').attr('av-animation', 'fadeInRight');
+    $('.service .service-3 .service-box-0').attr('av-animation', 'fadeInLeft');
+    $('.service .service-3 .service-box-1').attr('av-animation', 'fadeInLeft');
+    $('.service .service-3 .service-box-2').attr('av-animation', 'fadeInRight');
+    $('.service .service-2 .service-box-0').attr('av-animation', 'fadeInLeft');
+    $('.service .service-2 .service-box-1').attr('av-animation', 'fadeInRight');
+    $('.service .service-1 .service-box-0').attr('av-animation', 'fadeInLeft');
+    $(function () {
+
+        $("img.lazy").lazyload({skip_invisible: false, threshold: 100});
+        /*中英文切换*/
+        /*$('.check-lang').click(function () {
+         var data = {'lan': $(this).attr('lang')};
+         $.get(CHECK_LANG, data, function () {
+         location.reload();
+         });
+         });*/
+
+        /*判断PC页还是手机*/
+        if (flag) {
+
+        } else {
+            var mb_photo = $('.mb-photo').html();
+            $('.brands img').attr('data-original', mb_photo);
+        }
+
+        $('.carousel-inner .item').mouseover(function () {
+            $('.item-title').animate({
+                opacity: 1
+            }, 1000);
+        });
+        $('.carousel-inner .item').mouseout(function () {
+            $('.item-title').animate({
+                opacity: 0
+            }, 0);
+        });
+
+
+        /*时间轴*/
+        $('.timeline-2').Timeline({
+            itemClass: 'box-item',
+            dotsPosition: 'top',
+            startItem: 'last'
+        });
+
+        /*记录IP地址*/
+        addLog(ip_url);
+    })
+</script>
+</body>
+</html>

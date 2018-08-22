@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>客服客户端</title>
+    <meta charset="utf-8"/>
+    <link href="__cuCSS__/customer.css" rel="stylesheet" type="text/css" />
+    <link href="__cuJS__/layui/css/layui.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="small-chat-box fadeInRight animated">
+    <div class="heading" draggable="true">
+        <small class="chat-date pull-right">
+            <a href="http://www.oyoet.com" target="_blank">客服</a>
+        </small>
+        <span id="title">与 客服 交流中</span>
+    </div>
+    <div class="slimScrollDiv" style="position: relative; width: auto; height: 60%;" id="chat-content-box">
+        <div class="content" style="width: auto; height: 92%;overflow: auto" id="chat-list">
+
+        </div>
+    </div>
+    <div class="bar">
+        <div style="padding-left:15px;cursor:pointer;width:100px">
+            <i class="layui-icon" style="font-size: 30px;" id="up-face">&#xe60c;</i> &nbsp;
+            <i class="layui-icon" style="font-size: 30px;" id="up-image">&#xe60d;</i>
+        </div>
+    </div>
+    <div class="form-chat">
+        <textarea class="form-control chat-area" id="msg" style="width: 100%;height: 100px;resize: none"></textarea>
+        <div class="input-group" style="margin-top: 5px;width: 100%">
+            <span class="input-group-btn" style="float: right;">
+                <button class="btn btn-primary" type="button" id="send">发送</button>
+            </span>
+        </div>
+    </div>
+
+    <div class="face-box" style="display:none" id="face-box">
+
+    </div>
+</div>
+<script>
+    var config = {
+        uid: '{$id}',
+        name: '{$name}',
+        avatar: '{$avatar}',
+        group: '{$group}',
+        socket: '{$socket}'
+    };
+</script>
+<script src="__cuJS__/layui/layui.js"></script>
+<script src="__cuJS__/functions.js"></script>
+<script src="__cuJS__/whisper-cli.js"></script>
+
+</body>
+</html>

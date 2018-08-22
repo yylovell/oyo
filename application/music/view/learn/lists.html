@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Music Go！预约体验</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="__aIMG__/logo_music.jpg">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <link rel="stylesheet" href="__mCSS__/common.css">
+    <style>
+        .content-block-title {
+            font-weight: 600;
+        }
+        .list-block{
+            padding: 0 .6rem;
+        }
+        .list-block .item-title.label {
+            width: 0;
+        }
+    </style>
+
+</head>
+<body>
+<!-- page集合的容器，里面放多个平行的.page，其他.page作为内联页面由路由控制展示 -->
+<div class="page-group">
+    <!-- 单个page ,第一个.page默认被展示-->
+    <div class="page">
+        <!-- 标题栏 -->
+        <!--<header class="bar bar-nav">
+            <h1 class="title">预约体验</h1>
+        </header>-->
+
+        <!-- 这里是页面内容区 -->
+        <div class="content">
+            {empty name="data"}
+            <div class="content-block">
+                暂无体验课
+            </div>
+            {else/}
+            <div class="content-block">
+                <div class="content-block-title" style="font-size: .8rem;font-weight: 600;">
+                    {$data.title}
+                </div>
+                <div class="card demo-card-header-pic">
+                    <div valign="bottom" class="card-header color-white no-border no-padding">
+                        <img class='card-cover'
+                             src="__UPLOADS__/{$data.photo}"
+                             alt="">
+                    </div>
+
+                </div>
+
+                <div class="content-block-title">课程介绍</div>
+
+                <div class="content-block" style="font-size: .7rem;">
+                    {$data.des}
+                </div>
+
+                <div class="content-block-title">报名</div>
+
+                <div class="list-block">
+                    <ul style="border-radius: .3rem;">
+                        <!-- Text inputs -->
+                        <li style="display: none;">
+                            <div class="item-content">
+                                <div class="item-media"></div>
+                                <div class="item-inner">
+                                    <div class="item-title label"></div>
+                                    <div class="item-input">
+                                        <input type="text" id="learn_id" placeholder="" value="{$data.id}">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon icon-card"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title label"></div>
+                                    <div class="item-input">
+                                        <input type="text" id="name" placeholder="姓名" value="{$student.name}">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon icon-phone"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title label"></div>
+                                    <div class="item-input">
+                                        <input type="text" id="phone" placeholder="手机号" class="" value="{$student.phone}">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon icon-down"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title label"></div>
+                                    <div class="item-input">
+                                        <select id="student_type" class="form-control" name="student_type">
+                                            {volist name="student_type_map" id="vo"}
+                                            <option value="{$key}" {if condition="$student.student_type eq $key"}selected{/if} >{$vo}</option>
+                                            {/volist}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon icon-clock"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title label"></div>
+                                    <div class="item-input">
+                                        <input type="text" id='picker' placeholder="体验日期" value="{$student.time_area}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="content-block">
+                    <div class="row">
+                        <div class="col-100">
+                        {empty name='student.name'}
+                            <a href="#" class="button button-big button-fill button-success" id="sub">提交</a>
+                        {else/}
+                            <a href="javascript:;" class="button button-big button-fill button-success" >已报名</a>
+                            <p id="cancel-msg" style="font-size: .6rem;">没时间？<a href="javascript:;">临时取消</a></p>
+                            <input id="ls_id" type="hidden" value="{$student.id}">
+                        {/empty}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            {/empty}
+        </div>
+    </div>
+</div>
+
+
+<!-- 默认必须要执行$.init(),实际业务里一般不会在HTML文档里执行，通常是在业务页面代码的最后执行 -->
+<script type='text/javascript' src='__mJS__/common.js' charset='utf-8'></script>
+
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script>
+    var time_lists = {$time};
+    // console.log(time_lists);
+    /*if (time_lists.length <= 0)
+    {
+        time_lists = ["暂无体验日期"];
+    }*/
+
+    //配置日期选项
+    $("#picker").picker({
+        toolbarTemplate: '<header class="bar bar-nav">\
+                            <button class="button button-link pull-left"></button>\
+                            <button class="button button-link pull-right close-picker">确定</button>\
+                            <h1 class="title">选择体验日期</h1>\
+                           </header>',
+        cols: [
+            {
+                textAlign: 'center',
+                values: time_lists
+            }
+        ]
+    });
+</script>
+<script>
+    $(function () {
+        // 添加体验
+        $('#sub').click(function () {
+            var learn_id = $('#learn_id').val();
+            var name = $('#name').val();
+            var phone = $('#phone').val();
+            var time_area = $('#picker').val();
+            var student_type = $('#student_type').val();
+
+            var url = "{:url('add')}";
+
+            if (name.length > 12)
+            {
+                $.alert('姓名过长');return false;
+            }
+            if (!isPoneAvailable(phone))
+            {
+                $.alert('手机号码格式错误');return false;
+            }
+            if (time_area.length <1)
+            {
+                $.alert('请选择一个体验日期');return false;
+            }
+
+            var data = {'learn_id': learn_id, 'phone': phone, 'name': name, 'time_area': time_area, 'student_type': student_type};
+
+            // console.log(data);return false;
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                dataType: 'json',
+                data: data,
+                success: function (data) {
+                    if (data.code == 1)
+                    {
+                        $.alert('报名成功，请当日凭手机号参与体验', function () {
+                            location.reload();
+                        });
+                    }
+                    else
+                    {
+                        $.alert(data.msg);
+                    }
+                },
+                error: function (xhr, type) {
+                    $.alert('网络错误');
+                }
+            });
+
+        });
+
+        function isPoneAvailable(phone) {
+            var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+            if (!myreg.test(phone))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        // 取消体验课
+        $('#cancel-msg').click(function () {
+            $.confirm('确定取消体验课?', function () {
+                var ls_id = $('#ls_id').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: "{:url('learn/cancel')}",
+                    dataType: 'json',
+                    data: {ls_id:ls_id},
+                    success: function (data) {
+
+                        if (data.code == 1)
+                        {
+                            $.alert('体验课已取消，期待下次与您相见', function () {
+                                location.reload();
+                            });
+                        }
+                        else
+                        {
+                            $.alert(data.msg);
+                        }
+                    },
+                    error: function (xhr, type) {
+                        $.alert('网络错误');
+                    }
+                });
+            });
+
+        });
+    })
+</script>
+</body>
+</html>

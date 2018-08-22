@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欧游娱乐-后台管理</title>
+    <link rel="shortcut icon" href="__cIMG__/favicon.ico">
+    <link rel="Bookmark" href="__cIMG__/favicon.ico">
+    <link href="__aCSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__aCSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="__aCSS__/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+
+    <link href="__aCSS__/animate.min.css" rel="stylesheet">
+    <link href="__aCSS__/style.min.css?v=4.1.0" rel="stylesheet">
+    <style>
+        .widget {
+            border-radius: 5px;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            color: #ffffff;
+        }
+
+        .style1 {
+            background-color: #1AB394;
+        }
+
+        .style2 {
+            background-color: #1F85C5;
+        }
+
+        .style3 {
+            background-color: #2F4050;
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-md-3 col-sm-10 col-xs-10 student-card">
+            <div class="widget style1">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <i class="fa fa-users fa-4x"></i>
+                    </div>
+                    <div class="col-xs-8 text-right">
+                        <span>学员总数</span>
+                        <h2 class="font-bold" id="student"></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-10 col-xs-10">
+            <div class="widget style2">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <i class="fa fa-music fa-4x"></i>
+                    </div>
+                    <div class="col-xs-8 text-right">
+                        <span>体验人次</span>
+                        <h2 class="font-bold" id="learn"></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row chart-row">
+        <div class="col-md-7 col-xs-12">
+            <div class="list-group">
+                <div class="list-group-item active" style="overflow: auto;">
+                    <div class="col-md-5">会员课（已报名）</div>
+                    <div class="col-md-5"><input id="vip_day" lay-key="1" type="text" placeholder="日期" name="vip_day" class="layui-input day form-control" style="height: 20px;color: green;"></div>
+                    <div class="col-md-2"><button id="vip-btn" class="btn btn-warning btn-xs">查看</button></div>
+                </div>
+                <div class="pend-vip">
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-5 col-xs-12">
+            <div class="list-group">
+                <div class="list-group-item active" style="overflow: auto;">
+                    <div class="col-md-5">体验课（已报名）</div>
+                    <div class="col-md-5"><input id="learn_day" lay-key="2" type="text" placeholder="日期" name="learn_day" class="layui-input day form-control" style="height: 20px;color: green;"></div>
+                    <div class="col-md-2"><button id="learn-btn" class="btn btn-warning btn-xs">查看</button></div>
+                </div>
+                <div class="pend-learn">
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<script src="__aJS__/jquery.min.js?v=2.1.4"></script>
+<script src="__aJS__/bootstrap.min.js?v=3.3.6"></script>
+<script src="__aJS__/countUp.js"></script>
+<script src="__aJS__/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="__aJS__/plugins/layer/laydate5/laydate.js"></script>
+
+<script type="text/javascript">
+
+    /*count to*/
+    var options = {
+        useEasing: true,
+        useGrouping: true,
+        separator: ',',
+        decimal: '.'
+    };
+
+    var student = "{$student}";
+    var learn = "{$learn}";
+
+
+    var student_to = new CountUp('student', 0, student, 0, 1.5, options);
+    var learn_to = new CountUp('learn', 0, learn, 0, 2.0, options);
+
+
+    student_to.start();
+    learn_to.start();
+
+    // 初始化日期
+    lay('.day').each(function(){
+        laydate.render({
+            elem: this
+        });
+    });
+
+
+    // 会员课
+    function getVip(day) {
+        var url = "{:url('getVip')}";
+        var data = {'day':day};
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            dataType: 'json',
+            data: data,
+            success: function (data) {
+                if (data.code == 1)
+                {
+                    $('.pend-vip').children().remove();
+                    $('.pend-vip').append(data.data);
+                }
+                else
+                {
+                    swal(data.msg, "", "error");
+                }
+            },
+            error: function (xhr, type) {
+                swal("网络错误!", "", "error");
+            }
+        });
+    }
+
+    getVip();
+
+    $('#vip-btn').click(function () {
+        var day = $('#vip_day').val();
+        getVip(day);
+    });
+
+    // 体验课
+    function getLearn(day) {
+        var url = "{:url('getLearn')}";
+        var data = {'day':day};
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            dataType: 'json',
+            data: data,
+            success: function (data) {
+                if (data.code == 1)
+                {
+                    $('.pend-learn').children().remove();
+                    $('.pend-learn').append(data.data);
+                }
+                else
+                {
+                    swal(data.msg, "", "error");
+                }
+            },
+            error: function (xhr, type) {
+                swal("网络错误!", "", "error");
+            }
+        });
+    }
+
+    getLearn();
+
+    $('#learn-btn').click(function () {
+        var day = $('#learn_day').val();
+        getLearn(day);
+    });
+
+
+</script>
+</body>
+</html>

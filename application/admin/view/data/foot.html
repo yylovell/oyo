@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基础信息配置</title>
+    <link rel="shortcut icon" href="__cIMG__/favicon.ico">
+    <link rel="Bookmark" href="__cIMG__/favicon.ico">
+    <link href="__aCSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__aCSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="__aCSS__/animate.min.css" rel="stylesheet">
+    <link href="__aCSS__/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="__aCSS__/style.min.css?v=4.1.0" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="__aCSS__/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>更新基础信息配置</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <!--<a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>-->
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="commentForm" method="post" onsubmit="return toVaild()">
+                        <div class="panel blank-panel">
+                            <div class="panel-heading">
+                                <!--<div class="panel-title m-b-md">基础信息配置</div>-->
+                                <div class="panel-options">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active">
+                                            <a href="#tab-1" data-toggle="tab" aria-expanded="true"><i
+                                                    class="fa fa-safari"></i></a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#tab-2" data-toggle="tab" aria-expanded="false"><i
+                                                    class="fa fa-map-marker"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab-3" data-toggle="tab" aria-expanded="false"><i
+                                                    class="fa fa-tripadvisor"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="panel-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab-1">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"><i class="fa fa-info-circle"
+                                                                                     data-toggle="tooltip"
+                                                                                     data-placement="bottom"
+                                                                                     data-original-title="不得超过80个字"></i>
+                                                网站首页标题：</label>
+                                            <div class="input-group col-sm-7">
+                                <textarea id="title" type="text" class="form-control" name="title" required=""
+                                          aria-required="true">{$data.title}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"><i class="fa fa-info-circle"
+                                                                                     data-toggle="tooltip"
+                                                                                     data-placement="bottom"
+                                                                                     data-original-title="不得超过100个字，关键字之间用英文','分隔"></i>
+                                                SEO关键字：</label>
+                                            <div class="input-group col-sm-7">
+                                <textarea id="seo_keywords" type="text" class="form-control" name="seo_keywords"
+                                          required="" aria-required="true">{$data.seo_keywords}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"><i class="fa fa-info-circle"
+                                                                                     data-toggle="tooltip"
+                                                                                     data-placement="bottom"
+                                                                                     data-original-title="不得超过200个字"></i>
+                                                SEO描述：</label>
+                                            <div class="input-group col-sm-7">
+                                <textarea id="seo_des" type="text" class="form-control" name="seo_des" rows="4" cols="1"
+                                          required="" aria-required="true">{$data.seo_des}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab-2">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"><i class="fa fa-info-circle"
+                                                                                     data-toggle="tooltip"
+                                                                                     data-placement="bottom"
+                                                                                     data-original-title="如需分行，请用英文'|'分隔"></i>
+                                                关于欧游(页脚简介)：</label>
+                                            <div class="input-group col-sm-7">
+                                <textarea id="slogan" type="text" class="form-control" name="slogan" required=""
+                                          aria-required="true">{$data.slogan}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">联系邮箱：</label>
+                                            <div class="input-group col-sm-7">
+                                                <input id="email" type="email" class="form-control" name="email"
+                                                       required=""
+                                                       aria-required="true" value="{$data.email}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">HR邮箱：</label>
+                                            <div class="input-group col-sm-7">
+                                                <input id="hr_email" type="email" class="form-control" name="hr_email"
+                                                       required=""
+                                                       aria-required="true" value="{$data.hr_email}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">联系电话：</label>
+                                            <div class="input-group col-sm-7">
+                                                <input id="tel" type="text" class="form-control" name="tel" required=""
+                                                       aria-required="true" value="{$data.tel}">
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"><i class="fa fa-info-circle"
+                                                                                     data-toggle="tooltip"
+                                                                                     data-placement="bottom"
+                                                                                     data-original-title="如需分行，请用英文'|'分隔"></i>
+                                                公司地址：</label>
+                                            <div class="input-group col-sm-7">
+                                <textarea id="address" type="text" class="form-control" name="address" required=""
+                                          aria-required="true">{$data.address}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab-3">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">ceo：</label>
+                                            <div class="input-group col-sm-7">
+                                                <input id="ceo" type="text" class="form-control" name="ceo" required=""
+                                                       aria-required="true" value="{$data.ceo}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">ceo寄语：</label>
+                                            <div class="input-group col-sm-7">
+                                <textarea id="ceo_speak" type="text" class="form-control" name="ceo_speak" rows="4"
+                                          cols="1" placeholder="200字以内" required="" aria-required="true">{$data.ceo_speak}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"><i class="fa fa-info-circle"
+                                                                                     data-toggle="tooltip"
+                                                                                     data-placement="bottom"
+                                                                                     data-original-title="60字以内，如需分行，请用英文'|'分隔"></i>
+                                                企业愿景：</label>
+                                            <div class="input-group col-sm-7">
+                                <textarea id="company_hope" type="text" class="form-control" name="company_hope"
+                                          rows="4"
+                                          cols="1" required="" aria-required="true">{$data.company_hope}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"><i class="fa fa-info-circle"
+                                                                                     data-toggle="tooltip"
+                                                                                     data-placement="bottom"
+                                                                                     data-original-title="60字以内，如需分行，请用英文'|'分隔"></i>
+                                                企业使命：</label>
+                                            <div class="input-group col-sm-7">
+                                <textarea id="company_mission" type="text" class="form-control" name="company_mission"
+                                          rows="4"
+                                          cols="1" required="" aria-required="true">{$data.company_mission}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"><i class="fa fa-info-circle"
+                                                                                     data-toggle="tooltip"
+                                                                                     data-placement="bottom"
+                                                                                     data-original-title="60字以内，如需分行，请用英文'|'分隔"></i>
+                                                企业理念：</label>
+                                            <div class="input-group col-sm-7">
+                                <textarea id="company_belief" type="text" class="form-control" name="company_belief"
+                                          rows="4"
+                                          cols="1" required="" aria-required="true">{$data.company_belief}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"><i class="fa fa-info-circle"
+                                                                                     data-toggle="tooltip"
+                                                                                     data-placement="bottom"
+                                                                                     data-original-title="60字以内，如需分行，请用英文'|'分隔"></i>
+                                                核心价值观：</label>
+                                            <div class="input-group col-sm-7">
+                                <textarea id="key_value" type="text" class="form-control" name="key_value" rows="4"
+                                          cols="1" required="" aria-required="true">{$data.key_value}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <!--<input type="button" value="提交" class="btn btn-primary" id="postform"/>-->
+                                {if authCheck('data/foot')}
+                                <button class="btn btn-primary" type="submit">提交</button>
+                                {/if}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="__aJS__/jquery.min.js?v=2.1.4"></script>
+<script src="__aJS__/bootstrap.min.js?v=3.3.6"></script>
+<script src="__aJS__/content.min.js?v=1.0.0"></script>
+<script src="__aJS__/plugins/validate/jquery.validate.min.js"></script>
+<script src="__aJS__/plugins/validate/messages_zh.min.js"></script>
+<script src="__aJS__/plugins/iCheck/icheck.min.js"></script>
+<script src="__aJS__/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="__aJS__/plugins/layer/laydate/laydate.js"></script>
+<script src="__aJS__/plugins/suggest/bootstrap-suggest.min.js"></script>
+<script src="__aJS__/plugins/layer/layer.min.js"></script>
+<script type="text/javascript">
+
+    //表单提交
+    function toVaild() {
+        var jz;
+        var url = "{:url('')}";
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: {'data': $('#commentForm').serialize()},// 你的formid
+            async: false,
+            beforeSend: function () {
+                jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+            },
+            error: function (request) {
+                layer.close(jz);
+                swal("网络错误!", "", "error");
+            },
+            success: function (data) {
+                //关闭加载层
+                layer.close(jz);
+                if (data.code == 1) {
+                    swal(data.msg, "", "success");
+                } else {
+                    swal(data.msg, "", "error");
+                }
+
+            }
+        });
+
+        return false;
+    }
+
+    //表单验证
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $(".i-checks").iCheck({checkboxClass: "icheckbox_square-green", radioClass: "iradio_square-green",});
+    });
+    $.validator.setDefaults({
+        highlight: function (e) {
+            $(e).closest(".form-group").removeClass("has-success").addClass("has-error")
+        },
+        success: function (e) {
+            e.closest(".form-group").removeClass("has-error").addClass("has-success")
+        },
+        errorElement: "span",
+        errorPlacement: function (e, r) {
+            e.appendTo(r.is(":radio") || r.is(":checkbox") ? r.parent().parent().parent() : r.parent())
+        },
+        errorClass: "help-block m-b-none",
+        validClass: "help-block m-b-none"
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{$one.title} _案例详情-官网-上海欧游娱乐</title>
+    <meta name="description" content="{$one.title}">
+    <meta name="keywords" content="{$one.title}"/>
+    <link rel="shortcut icon" href="__cIMG__/favicon.ico">
+    <link href="__aCSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__aCSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+
+    <link href="__aCSS__/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="__cCSS__/common.css">
+    <link rel="stylesheet" href="__iCSS__/cases.css">
+
+</head>
+<body>
+<!--loading-->
+<!--<div class="loading text-center" id="loading">
+    <div style="padding-top: 500px;color: #fff"><h3>loading...</h3> </div>
+    <div class="loading-warp">
+        <div class="load">
+        </div>
+    </div>
+</div>-->
+
+<!-- 导航-->
+{include file='common@common/tab2'}
+
+<div class="container-fluid">
+    <!-- 头图-->
+    <div class="row header">
+        <div class="col-md-9 col-xs-12">
+            <h1>{$Think.lang.Cases}</h1>
+        </div>
+        <div class="col-md-3 col-xs-12">
+            <div class="breadcrumbs">
+                <a href="{:url('index/index')}" class="horizontal">{$Think.lang.Home}</a>
+
+                &nbsp;<i class="fa fa-angle-right" style="font-weight: 800;"></i>&nbsp;
+
+                <a href="{:url('cases/lists')}" class="horizontal">{$Think.lang.CasesList}</a>
+
+                &nbsp;<i class="fa fa-angle-right" style="font-weight: 800;"></i>&nbsp;
+
+                <span class="active" style="color: #ead36f;">{$Think.lang.CasesDetail}</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row cases-detail">
+
+        <div class="col-md-6 col-xs-12 cases-detail-left">
+            <div class="row photo-up">
+                <div class="col-md-6 col-xs-6 photo">
+                    <div class="thumbnail">
+                        <img src="__UPLOADS__/{$one.photo1}" alt="案例图1">
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-6 photo">
+                    <div class="thumbnail">
+                        <img src="__UPLOADS__/{$one.photo2}" alt="案例图2">
+                    </div>
+                </div>
+            </div>
+            <div class="row photo-down">
+                <div class="col-md-6 col-xs-6 photo">
+                    <div class="thumbnail">
+                        <img src="__UPLOADS__/{$one.photo3}" alt="案例图3">
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-6 photo">
+                    <div class="thumbnail">
+                        <img src="__UPLOADS__/{$one.photo4}" alt="案例图4">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 col-xs-12 cases-detail-right">
+            <h3 class="title-left">描述</h3>
+
+            <p>{$one.content}</p>
+            <h3 class="title-left">详情</h3>
+
+            <p><strong>{$one.title}</strong></p>
+            <p>品牌：{$one.customer}</p>
+            <p>植入产品：{$one.product}</p>
+            <p>演员阵容：{$one.actors}</p>
+            <p>播放平台：{$one.platform}</p>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+<!-- 页脚-->
+{include file='common@common/footer'}
+
+
+<script src="__aJS__/jquery.min.js?v=2.1.4"></script>
+<script src="__cJS__/jquery.cookie.js"></script>
+<script src="__aJS__/bootstrap.min.js?v=3.3.6"></script>
+<script src="__cJS__/common.js"></script>
+<script src="__cJS__/gotop.js"></script>
+<script>
+    var ip_url = "{:url('log/ip')}";
+    $(function () {
+        addLog(ip_url);
+    })
+</script>
+</body>
+</html>

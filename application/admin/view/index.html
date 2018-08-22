@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="nofollow">
+    <title>欧游娱乐-后台管理</title>
+    <!-- 移动设备 viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 360浏览器默认使用Webkit内核 -->
+    <meta name="renderer" content="webkit">
+    <!-- 禁止百度SiteAPP转码 -->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <!-- Win8标题栏及ICON图标 -->
+    <link rel="apple-touch-icon-precomposed" href="__cIMG__/favicon.ico">
+    <meta name="msapplication-TileImage" content="__cIMG__/favicon.ico">
+    <meta name="msapplication-TileColor" content="#62a8ea">
+
+    <link rel="shortcut icon" href="__cIMG__/favicon.ico">
+    <link rel="Bookmark" href="__cIMG__/favicon.ico">
+    <link href="__aCSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__aCSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="__aCSS__/animate.min.css" rel="stylesheet">
+    <link href="__aCSS__/style.min.css?v=4.1.0" rel="stylesheet">
+    <link href="__aJS__/plugins/layui/css/layui.css" rel="stylesheet">
+    <style>
+        .dropdown-messages {
+            padding: 0 !important;
+        }
+        .dropdown-menu .divider {
+            height: 1px;
+            margin: 0;
+            overflow: hidden;
+            background-color: #e5e5e5;
+        }
+        .dropdown-messages>li:first-child{
+            margin-top: 5px;
+        }
+        .dropdown-messages-box{
+            overflow: auto;
+        }
+        .dropdown-messages-box a{
+            color: #676a6c;
+            font-weight: 600;
+            text-align: center;
+            padding-top: 0 !important;
+        }
+        .link-block {
+            padding: 0;
+        }
+        .msg{
+            padding: 10px;
+        }
+        .sign-read{
+            color: #1F85C5;
+            cursor: pointer;
+        }
+
+        /**/
+        .sidebar-content{
+            height: 450px;
+            padding: 0 !important;
+            overflow: auto;
+            margin: 0 !important;
+        }
+
+        /*新闻*/
+        .box-wrap {
+            width: 100%;
+            height: 40px;
+            background-color: #f4f5f7;
+            white-space: nowrap;
+            overflow: hidden;
+            overflow-x: scroll; /* 1 */
+            -webkit-backface-visibility: hidden;
+            -webkit-perspective: 1000;
+            -webkit-overflow-scrolling: touch; /* 2 */
+            text-align: justify; /* 3 */
+        }
+        .box-wrap::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+            color: transparent;
+            display: none;
+        }
+
+        .box-content {
+
+        }
+        .box-content > div {
+            display: inline-block;
+            height: 40px;
+            color: #666;
+            text-align: center;
+            line-height: 40px;
+        }
+        .box-content > div > span{
+            color: #666;
+            font-size: 13px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .box-wrap .box-content .box.active span::after{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            content: '';
+            background: #f15353;
+            z-index: 1000;
+        }
+        .box-wrap .box-content .box.active span{
+            color: #f15353;
+        }
+
+        .box {
+            position: relative;
+            width: 20%;
+        }
+        .box-news .divider{
+            height: 1px;
+            margin: 0;
+            overflow: hidden;
+            background-color: #e5e5e5;
+        }
+        .box-news .news-src{
+            color: #333;
+        }
+        .sidebar-container .sidebar-message .message-avatar {
+            height: 50px;
+            width: 50px;
+            border-radius: 4px;
+        }
+
+        /*film*/
+        .box-films .sidebar-message{
+            padding-right: 0!important;
+        }
+        .contact-box {
+            border: none;
+            padding: 0 !important;
+            margin-top: 8px;
+            margin-bottom: 20px;
+        }
+        .contact-box>a>.col-sm-4{
+            padding: 0 !important;
+        }
+        .contact-box>.col-sm-8{
+            padding-right: 5px !important;
+        }
+        .contact-box>.col-sm-8 p{
+            margin-bottom: 5px;
+        }
+        .film-grade{
+            color: gold;
+        }
+        .box-films .divider{
+            height: 1px;
+            margin: 0;
+            overflow: hidden;
+            background-color: #e5e5e5;
+        }
+        .navbar-form-custom {
+            float: left;
+            height: 60px;
+            padding: 0;
+            width: 200px;
+            display: inline-table;
+        }
+        .component .form-group {
+            margin-top: 5px;
+        }
+        .component .layui-input, .layui-select, .layui-textarea {
+            height: 40px;
+            line-height: 1.3;
+            line-height: 38px\9;
+            border-width: 1px;
+            border: none;
+            border-bottom:1px solid rgba(0, 0, 0, .2);
+            background-color: transparent;
+            border-radius: 2px;
+        }
+        .component .layui-form-select dl dd.layui-this {
+            background-color: #1ab394;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+<div id="wrapper">
+    <!--左侧导航开始-->
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="nav-close"><i class="fa fa-times-circle"></i>
+        </div>
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element text-center">
+                        <span>
+                            <img alt="image" class="img-circle" src="__UPLOADS__/{$avatar}" width="70px"
+                                 height="auto"/>
+                        </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear">
+                                <span class="block m-t-xs"><strong class="font-bold">{$username}</strong></span>
+                                <span class="text-muted text-xs block">{$rolename}<b class="caret"></b></span>
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li>
+                                <a href="{:url('admin/login/loginOut')}">安全退出</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        {if condition='$is_music eq 1'}
+                        Music Go!
+                        {else /}
+                        OYO
+                        {/if}
+                    </div>
+                </li>
+                {if !empty($menu)}
+                {foreach name="menu" item="vo"}
+                <li class="menu">
+                    <a href="{$vo.href}">
+                        <i class="{$vo.style}"></i>
+                        <span class="nav-label">{$vo.node_name} </span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        {if !empty($vo['child'])}
+                        {foreach name="$vo['child']" item="v"}
+                        <li>
+                            <a class="J_menuItem" href="{$v.href}">{$v.node_name}</a>
+                        </li>
+                        {/foreach}
+                        {/if}
+                    </ul>
+                </li>
+                {/foreach}
+                {/if}
+            </ul>
+        </div>
+    </nav>
+    <!--左侧导航结束-->
+    <!--右侧部分开始-->
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i
+                        class="fa fa-bars"></i> </a>
+                    <form class="layui-form component navbar-form-custom">
+                        <div class="form-group">
+                            <a href="" class="J_menuItem hidden" id="component"></a>
+                            <select lay-filter="component" lay-search class="form-control">
+                                <option value="">--常用搜索--</option>
+                                {if authCheck('cases/lists')}
+                                <option value="{:url('cases/lists')}">案例列表</option>
+                                {/if}
+                                {if authCheck('news/lists')}
+                                <option value="{:url('news/lists')}">新闻列表</option>
+                                {/if}
+                                {if authCheck('students/lists')}
+                                <option value="{:url('students/lists')}">学员列表</option>
+                                {/if}
+                                {if authCheck('learncourse/lists')}
+                                <option value="{:url('learncourse/lists')}">课程列表</option>
+                                {/if}
+                                {if authCheck('learnconfig/lists')}
+                                <option value="{:url('learnconfig/lists')}">课程配置</option>
+                                {/if}
+                                {if authCheck('vipstudent/lists')}
+                                <option value="{:url('vipstudent/lists')}">会员课学员列表</option>
+                                {/if}
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    {if authCheck('operatelog/lists')}
+                    <li class="dropdown" id="message-log">
+                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#" aria-expanded="false">
+                            <i class="fa fa-bell"></i>
+                            <span id="log-num" class="label label-warning"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-messages">
+
+
+                            <li id="li-btn" class="msg">
+                                <div class="text-center link-block">
+                                    <a class="J_menuItem" href="{:url('operatelog/lists')}">
+                                        <i class="fa fa-bell"></i>
+                                        <strong>查看全部日志</strong>
+                                    </a>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    {/if}
+                    <li class="dropdown hidden-xs">
+                        <a href="{:url('index@cus')}" target="_blank">
+                            <i class="fa fa-tty"></i> 客服
+                        </a>
+                    </li>
+                    <li class="dropdown hidden-xs">
+                        <a href="{:url('index@www')}" target="_blank">
+                            <i class="fa fa-home"></i> 前台
+                        </a>
+                    </li>
+                    <li class="dropdown hidden-xs">
+                        <a id="sidebar-right" class="right-sidebar-toggle" aria-expanded="false">
+                            <i class="fa fa-tasks"></i> 主题与资讯
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="row content-tabs">
+            <button class="roll-nav roll-left J_tabLeft"><i class="fa fa-backward"></i>
+            </button>
+            <nav class="page-tabs J_menuTabs">
+                <div class="page-tabs-content">
+                    <a href="javascript:;" class="active J_menuTab" data-id="index_v1.html">中控台</a>
+                </div>
+            </nav>
+            <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i></button>
+            <div class="btn-group roll-nav roll-right">
+                <button class="dropdown J_tabClose" data-toggle="dropdown">常用操作<span class="caret"></span>
+
+                </button>
+                <ul role="menu" class="dropdown-menu dropdown-menu-right">
+                    <!--<li class="J_tabGo"><a>前进</a>
+                    </li>
+                    <li class="J_tabBack"><a>后退</a>
+                    </li>-->
+                    <li class="J_tabFresh"><a>刷新</a>
+                    </li>
+                    <!--<li class="divider"></li>
+                    <li class="J_tabShowActive"><a>定位当前选项卡</a>
+                    </li>-->
+                    <li class="divider"></li>
+                    <li class="J_tabCloseAll"><a>关闭全部选项卡</a>
+                    </li>
+                    <li class="J_tabCloseOther"><a>关闭其他选项卡</a>
+                    </li>
+                </ul>
+            </div>
+            <a href="{:url('admin/login/loginOut')}" class="roll-nav roll-right J_tabExit"><i
+                    class="fa fa fa-sign-out"></i>
+                退出</a>
+        </div>
+        <div class="row J_mainContent" id="content-main">
+            {if condition='$is_music eq 1'}
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%"
+                    src="{:url('Index/indexMusic')}" frameborder="0"
+                    data-id="index_v1.html" seamless></iframe>
+            {else /}
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%"
+                    src="{:url('Index/indexPage')}" frameborder="0"
+                    data-id="index_v1.html" seamless></iframe>
+            {/if}
+        </div>
+        <div class="footer">
+            <div class="text-center">
+                <p>&copy; <span id="foot-year"></span> OYO MEDIA 欧游娱乐</p>
+            </div>
+
+        </div>
+    </div>
+    <!--右侧部分结束-->
+    <!--右侧边栏开始-->
+    <div id="right-sidebar">
+        <div class="sidebar-container">
+            <ul class="nav nav-tabs navs-3">
+                <li class="active">
+                    <a data-toggle="tab" href="#tab-1">
+                        <i class="fa fa-gear"></i> 主题
+                    </a>
+                </li>
+                <li id="films-tab">
+                    <a data-toggle="tab" href="#tab-2">
+                        <i class="fa fa-film"></i> 影讯
+                    </a>
+                </li>
+                <li id="news-tab">
+                    <a data-toggle="tab" href="#tab-3">
+                        <i class="fa fa-newspaper-o"></i> 新闻
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane active">
+                    <div class="sidebar-title">
+                        <h3><i class="fa fa-comments-o"></i> 主题设置</h3>
+                        <small><i class="fa fa-tim"></i> 你可以从这里选择和预览主题的布局和样式，这些设置会被保存在本地，下次打开的时候会直接应用这些设置。</small>
+                    </div>
+                    <div class="skin-setttings">
+                        <div class="title">主题设置</div>
+                        <div class="setings-item">
+                            <span>收起左侧菜单</span>
+                            <div class="switch">
+                                <div class="onoffswitch">
+                                    <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox"
+                                           id="collapsemenu">
+                                    <label class="onoffswitch-label" for="collapsemenu">
+                                        <span class="onoffswitch-inner"></span>
+                                        <span class="onoffswitch-switch"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="setings-item">
+                            <span>固定顶部</span>
+
+                            <div class="switch">
+                                <div class="onoffswitch">
+                                    <input type="checkbox" name="fixednavbar" class="onoffswitch-checkbox"
+                                           id="fixednavbar">
+                                    <label class="onoffswitch-label" for="fixednavbar">
+                                        <span class="onoffswitch-inner"></span>
+                                        <span class="onoffswitch-switch"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="setings-item">
+                                <span>
+                        固定宽度
+                    </span>
+
+                            <div class="switch">
+                                <div class="onoffswitch">
+                                    <input type="checkbox" name="boxedlayout" class="onoffswitch-checkbox"
+                                           id="boxedlayout">
+                                    <label class="onoffswitch-label" for="boxedlayout">
+                                        <span class="onoffswitch-inner"></span>
+                                        <span class="onoffswitch-switch"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="title">皮肤选择</div>
+                        <div class="setings-item default-skin nb">
+                                <span class="skin-name ">
+                         <a href="#" class="s-skin-0">
+                             默认皮肤
+                         </a>
+                    </span>
+                        </div>
+                        <div class="setings-item blue-skin nb">
+                                <span class="skin-name ">
+                        <a href="#" class="s-skin-1">
+                            蓝色主题
+                        </a>
+                    </span>
+                        </div>
+                        <div class="setings-item yellow-skin nb">
+                                <span class="skin-name ">
+                        <a href="#" class="s-skin-3">
+                            黄色/紫色主题
+                        </a>
+                    </span>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab-2" class="tab-pane">
+                    <div class="sidebar-title">
+                        <h3><i class="fa fa-comments-o"></i> 影视资讯</h3>
+                        <small><i class="fa fa-tim"></i> 这里有上海正在上映的的影视资讯，详细信息，还可以查看最热影评。</small>
+                    </div>
+
+                    <div class="film-search">
+                        <div class="input-group">
+                                <span class="input-group-btn">
+                                    <button id="search-film-btn" class="btn btn-primary">搜</button>
+                                </span>
+                            <input id="search-city" type="text" class="form-control" placeholder="输入城市名称..." value="上海">
+                        </div>
+                    </div>
+
+                    <div class="sidebar-content">
+
+                        <div class="box-films" >
+
+                        </div>
+                    </div>
+                </div>
+                <div id="tab-3" class="tab-pane">
+                    <div class="sidebar-title">
+                        <h3><i class="fa fa-comments-o"></i> 新闻资讯</h3>
+                        <small><i class="fa fa-tim"></i> 这里有最新最好的新闻资讯等待您来发现(每5-30分钟更新)。</small>
+                    </div>
+
+                    <div class="box-wrap">
+                        <div class="box-content">
+                            {volist name="news_cat" id="cat" empty="暂时没有数据"}
+                            <div class="box" data-key="{$key}"><span>{$cat}</span></div>
+                            {/volist}
+                        </div>
+
+                    </div>
+
+                    <div class="sidebar-content">
+                        <div class="box-news">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--右侧边栏结束-->
+    <!--mini聊天窗口开始-->
+</div>
+<script src="__aJS__/jquery.min.js?v=2.1.4"></script>
+<script src="__aJS__/bootstrap.min.js?v=3.3.6"></script>
+<script src="__aJS__/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="__aJS__/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="__aJS__/plugins/layer/layer.min.js"></script>
+<script src="__aJS__/hplus.min.js?v=4.1.0"></script>
+<!--<script type="text/javascript" src="__JS__/contabs.min.js"></script>-->
+<script src="__aJS__/contabs.js"></script>
+<script src="__aJS__/plugins/pace/pace.min.js"></script>
+<script src="__aJS__/plugins/layui/layui.js"></script>
+<script>
+    $(function () {
+        getOpLists();
+        var date = new Date;
+        var year = date.getFullYear();
+        $('#foot-year').html(year);
+
+        $('#message-log').click(function () {
+            if (!$(this).hasClass('open'))
+            {
+                getOpLists();
+            }
+        });
+
+        layui.use('form', function() {
+            var form = layui.form;
+            //执行实例
+            form.on('select(component)', function (value) {
+                $('#component').attr('href', value.value);
+                $('#component').html(value.elem.selectedOptions[0].innerHTML)
+                $('#component').trigger("click");
+            });
+        });
+
+        //
+        var channel = $('.box-wrap').find('.box').first().text();
+        var key = $('.box-wrap').find('.box').first().data('key');
+        var city = $('#search-city').val();
+        _chooseCat();
+
+        $('#films-tab').click(function () {
+            getFilms(city);
+        });
+
+        $('#news-tab').click(function () {
+            getNews(channel, key);
+        });
+
+        //
+        $('#search-film-btn').click(function () {
+            var city_name = $('#search-city').val();
+            getFilms(city_name);
+        });
+
+        //
+        $('.dropdown-messages').on('mouseenter', '.msg', function () {
+            $(this).css('background-color', '#f3f3f4');
+            $(this).find('.log-time').addClass('hidden');
+            $(this).find('.sign-read').removeClass('hidden');
+        });
+        $('.dropdown-messages').on('mouseleave', '.msg', function () {
+            $(this).find('.sign-read').addClass('hidden');
+            $(this).find('.log-time').removeClass('hidden');
+            $(this).css('background-color', '#fff');
+        })
+
+        //
+        $('.dropdown-messages').on('click', '.sign-read', function (e) {
+            e.stopPropagation();
+            var id = $(this).data('id');
+            $.ajax({
+                type: 'POST',
+                url: "{:url('read')}",
+                dataType: 'json',
+                data: {"id": id},
+                success: function (data) {
+                    if (data.code == 1)
+                    {
+                        getOpLists();
+                    }
+                    else
+                    {
+                        console.log(data.msg);
+                    }
+                },
+                error: function (xhr, type) {
+                    console.log('网络错误');
+                }
+            });
+        });
+
+    });
+
+    function getOpLists() {
+        var url = "{:url('getOpLists')}";
+        var data = {};
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            dataType: 'json',
+            data: data,
+            success: function (data) {
+                if (data.code == 1)
+                {
+                    $('.dropdown-messages').children('.li').remove();
+                    $('#li-btn').before(data.data);
+                    $('#log-num').text(log_num);
+                }
+                else
+                {
+                    console.log(data.msg);
+                }
+            },
+            error: function (xhr, type) {
+                console.log('网络错误');
+            }
+        });
+    }
+
+    /**
+     * 选择新闻分类
+     * @private
+     */
+    function _chooseCat() {
+        $('.box-wrap').find('.box').first().addClass("active");
+
+        $('.box-wrap .box').click(function () {
+            $(this).siblings().removeClass('active');
+            $(this).addClass('active');
+
+            var new_cat = $(this).text();
+            var cat_key = $(this).data('key');
+            getNews(new_cat, cat_key)
+
+        });
+    }
+
+    /*获取资讯*/
+    function getNews(channel, cat_key) {
+        var url = "{:url('getNews')}";
+        var data = {'channel': channel, 'cat_key': cat_key};
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            dataType: 'json',
+            data: data,
+            success: function (data) {
+                if (data.code == 1)
+                {
+                    $('.box-news').children().remove();
+                    $('.box-news').append(data.data);
+                }
+                else
+                {
+                    console.log(data.msg);
+                }
+            },
+            error: function (xhr, type) {
+                console.log('网络错误');
+            }
+        });
+    }
+
+    /*获取影视*/
+    function getFilms(city) {
+        var url = "{:url('getFilms')}";
+        var data = {'city': city};
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            dataType: 'json',
+            data: data,
+            success: function (data) {
+                if (data.code == 1)
+                {
+                    $('.box-films').children().remove();
+                    $('.box-films').append(data.data);
+                }
+                else
+                {
+                    console.log(data.msg);
+                }
+            },
+            error: function (xhr, type) {
+                console.log('网络错误');
+            }
+        });
+    }
+</script>
+</body>
+
+</html>

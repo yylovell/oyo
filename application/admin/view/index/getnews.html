@@ -1,0 +1,26 @@
+{__NOLAYOUT__}
+{empty name="news_now"}
+<div>
+    <p>该分类下暂无新闻</p>
+</div>
+{else/}
+{volist name="news_now" id="v"}
+<div>
+    <div class="sidebar-message">
+        <a href="{$v.weburl}" target="_blank">
+            <div class="pull-left text-center" style="width: 20%;">
+                {if condition="$v.pic neq ''"}
+                <img class="img-circle message-avatar" src="{$v.pic}" alt="image">
+                {/if}
+            </div>
+            <div class="media-body">
+                <p><strong class="news-src">{$v.src}: </strong>{$v.title}</p>
+                <small class="text-muted">{$v.time}</small>
+            </div>
+        </a>
+
+        <div class="divider"></div>
+    </div>
+</div>
+{/volist}
+{/empty}

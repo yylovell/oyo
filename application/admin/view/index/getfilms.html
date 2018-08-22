@@ -1,0 +1,40 @@
+{__NOLAYOUT__}
+{empty name="films"}
+<div>
+    <p>暂无该城市影视资讯</p>
+</div>
+{else/}
+{volist name="films" id="item"}
+<div>
+    <div class="sidebar-message">
+        <h3>{$item.name}</h3>
+        {volist name="item.data" id="v"}
+        <div class="contact-box">
+            <a href="">
+                <div class="col-sm-4">
+                    <div class="text-center">
+                        <img class="img-circle m-t-xs img-responsive" alt="image" src="{$v.iconaddress}">
+                    </div>
+                </div>
+            </a>
+
+            <div class="col-sm-8">
+                <strong>{$v.tvTitle}</strong>
+                {if condition="isset($v.grade)"}
+                <p>观众评分 <span class="film-grade">{$v.grade}</span></p>
+                {else/}
+                <p>上映日期：{$v.playDate.data}</p>
+                {/if}
+                <p>导演：{$v['director']['data']['1']['name']}</p>
+                <p>主演：{$v['star']['data']['1']['name']} {$v['star']['data']['2']['name']} {$v['star']['data']['3']['name']} {$v['star']['data']['4']['name']}</p>
+                <p><a href="{$v.iconlinkUrl}" class="btn btn-xs btn-primary" target="_blank" style="color: #fff;">详情</a></p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="divider"></div>
+        {/volist}
+    </div>
+</div>
+{/volist}
+{/empty}

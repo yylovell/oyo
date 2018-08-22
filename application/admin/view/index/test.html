@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{
+            perspective: 400px;
+            transform-style: preserve-3d;
+        }
+        .container, .box{
+            width: 150px;
+            height: 80px;
+            margin: 10px auto;
+        }
+        .box{
+            backface-visibility: hidden;
+            transition: 1s;
+            transform-style: preserve-3d;
+            position: absolute;
+            text-align: center;
+        }
+        .box3{background-color: pink;}
+        .box4{background-color: red;}
+        .box4{transform: rotateY(-180deg);}
+        .container:hover .box3{transform: rotateY(180deg);}
+        .container:hover .box4{transform: rotateY(0deg);}
+    </style>
+</head>
+<body>
+
+<div class="container" ontouchstart="this.classList.toggle('hover');">
+    <div class="box box3">
+        front
+    </div>
+    <div class="box box4">
+        back
+    </div>
+</div>
+
+</body>
+</html>

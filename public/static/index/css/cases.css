@@ -1,0 +1,252 @@
+.header{
+    padding: 30px 80px;
+    font-weight: 300;
+    font-size: 18px;
+    background-color: #24ad7f;
+    background-size: cover;
+    background-image: url('../images/breadcrumbs-bar-bg.jpg');
+    color: #fff;
+    line-height: 60px;
+}
+.header h1{
+    text-shadow: -3px 3px 0 rgba(0,0,0,.1);
+}
+.breadcrumbs{
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+.breadcrumbs a{
+    color: #fff !important;
+}
+/* 列表*/
+.cases-lists{
+    padding: 75px 30px 80px ;
+    min-height: 500px;
+    background-color:#fff ;
+}
+.cases-all{
+    min-height: 300px;
+}
+.cases-all-one{
+    padding-left: 0;
+    padding-right: 10px;
+}
+.cases-filter{
+    list-style: none;
+    text-align: center;
+    display: block;
+    margin-bottom: 50px;
+    padding: 0;
+    font-size: 0;
+}
+.cases-filter li{
+    list-style: none;
+    display: inline-block;
+}
+.cases-filter li a.selected,
+.cases-filter li:hover,
+.cases-filter li:hover a {
+    color: rgba(205, 154, 15, 1);
+}
+.cases-filter li:first-child a {
+    border-left: 1px solid #e1e9e9;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+.cases-filter li:last-child a {
+    border-right: 1px solid #e1e9e9;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+.cases-filter li a {
+    color: #939fa6;
+    font-size: 16px;
+    font-weight: 300;
+    border: 1px solid #e1e9e9;
+    border-left: none;
+    padding: 9px 20px 12px 20px;
+    display: inline-block;
+}
+
+.cases-lists .thumbnail{
+    position: relative;
+    padding: 0;
+    margin-bottom: 10px;
+    border: none;
+    overflow: hidden;
+}
+
+.cases-lists .thumbnail img {
+    -webkit-transition: all 0.8s ease 0s;
+    -moz-transition: all 0.8s ease 0s;
+    transition: all 0.8s ease 0s;
+
+    -webkit-transform: translate3D(0, 0, 0);
+    -moz-transform: translate3D(0, 0, 0);
+    transform: translate3D(0, 0, 0);
+}
+
+.cases-lists .thumbnail .thum-card{
+    position: absolute;
+    top:0;
+    left:0;
+    bottom: 0;
+    right:0;
+    color: rgba(205,154,15,1);
+    text-shadow:1px 1px 1px rgba(0,0,0,.1);
+    background-color: rgba(255,255,255,.7);
+    padding: 20px auto;
+    margin: 0 auto;
+    opacity: 0;
+    transition: all 200ms ease-in;
+    -webkit-transition: all 200ms ease-in;
+}
+.cases-lists .thumbnail:hover .thum-card{
+    opacity: 1;
+}
+.cases-lists .thumbnail:hover img {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+}
+.cases-lists .thum-card .thum-card-header{
+    margin-top: 30px;
+}
+.cases-lists .thum-card .thum-card-header p{
+    color:#58666e ;
+    font-size: 12px;
+}
+
+.cases-lists .thum-card i{
+    background-color: transparent;
+    width: 32px;
+    height: 32px;
+    line-height: 30px;
+    text-align: center;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    color: rgba(205,154,15,1);
+    border: 1px solid rgba(205,154,15,1);
+}
+.cases-lists .thum-card i:hover{
+    color: #fff;
+    background-color: rgba(205,154,15,1);
+}
+.cases-lists .thum-card-des{
+    position: absolute;
+    top: 15px;
+    left: -30px;
+    height: 30px;
+    width: 110px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 11px;
+    opacity: 1;
+    transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg); 	/* IE 9 */
+    -moz-transform:rotate(-45deg); 	/* Firefox */
+    -webkit-transform:rotate(-45deg); /* Safari 和 Chrome */
+    -o-transform:rotate(-45deg);
+    color: #555;
+    background-color: rgba(205, 154, 15, .3);
+}
+
+/*详情页*/
+.cases-detail{
+    min-height: 300px;
+    padding: 50px 30px;
+    background-color: #fff;
+}
+.cases-detail-left .thumbnail{
+    padding: 0;
+    border: none;
+    overflow: hidden;
+    margin-bottom: 3px;
+}
+.cases-detail-left .photo{
+    padding-right: 0;
+    padding-left: 3px;
+}
+.cases-detail-left .photo-up{
+    padding-top: 20px;
+}
+.cases-detail-right{
+    padding-left: 20px;
+}
+
+.title-left{
+    border-bottom: 1px solid #e6ebed;
+    display: block;
+    text-align: left;
+    font-size: 22px;
+    padding-bottom: 10px;
+
+    margin-bottom: 40px;
+
+    position: relative;
+}
+.title-left:after{
+    display: block;
+    content: "";
+    width: 60px;
+    height: 2px;
+    background: rgba(205,154,15,1);
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    margin-left: 0;
+
+}
+
+
+/*common*/
+/*浏览器适配*****************************************************************************/
+@media screen and (min-width: 1201px) {
+
+}
+
+/* css注释：设置了浏览器宽度不小于1201px时 abc 显示1200px宽度 */
+
+@media screen and (max-width: 1200px) {
+
+}
+
+/* 设置了浏览器宽度不大于1200px时 abc 显示900px宽度 */
+
+@media screen and (max-width: 901px) {
+
+}
+
+/* 设置了浏览器宽度不大于901px时 abc 显示200px宽度 */
+
+@media screen and (max-width: 500px) {
+    .header {
+        padding: 30px;
+    }
+    .cases-lists{
+        padding: 75px 15px 80px ;
+    }
+
+    .cases-filter li a {
+        font-size: 16px;
+        padding: 5px 10px 8px 10px;
+
+    }
+
+    .cases-all-one{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .cases-lists .thumbnail{
+        margin-bottom: 20px;
+    }
+    .cases-detail{
+        padding: 55px 15px;
+    }
+}
+
+/* 设置了浏览器宽度不大于500px时 abc 显示100px宽度 */
+/******************************************************************************/

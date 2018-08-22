@@ -1,0 +1,82 @@
+<footer class="footer" id="scrolltocontact">
+    <div class="footer-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-xs-12 ">
+                    <h3 class="aniview foot-head-delay" av-animation="fadeInLeft">{$Think.lang.AboutUs}</h3>
+                    <div class="footer-warp text-left">
+                        {foreach name="foot.slogan" item="s"}
+                        <p>{$s}</p>
+                        {/foreach}
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12 contact-type ">
+                    <h3 class="aniview" av-animation="fadeInLeft">{$Think.lang.ContactUs}</h3>
+                    <div class="footer-warp text-left">
+                        <div class="media p">
+                            <div class="media-left">
+                                <i class="fa fa-envelope"></i>
+                            </div>
+                            <div class="media-body">
+                                <a href="mailto:{$foot.email}"
+                                   style="display: inline-block;text-transform: Lowercase;">{$foot.email}</a>
+                            </div>
+                        </div>
+                        <div class="media p">
+                            <div class="media-left">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <div class="media-body">
+                                {$foot.tel}
+                            </div>
+                        </div>
+                        <div class="media p">
+                            <div class="media-left">
+                                <i class="fa fa-home"></i>
+                            </div>
+                            <div class="media-body">
+                                {foreach name="foot.address" item="a"}
+                                <p>{$a}</p>
+                                {/foreach}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-12 ">
+                    <h3 class="aniview" av-animation="fadeInRight">{$Think.lang.FastLink}</h3>
+                    <div class="footer-warp text-left">
+                        <a href="{:url('services/lists')}" class="a-link"> {$Think.lang.ServiceDetail}</a>
+                        <a href="{:url('cases/lists')}" class="a-link"> {$Think.lang.CasesList}</a>
+                        <a href="{:url('news/lists')}" class="a-link"> {$Think.lang.NewsList}</a>
+                        <a href="{:url('join/lists')}" class="a-link"> {$Think.lang.Join}</a>
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-12 ">
+                    <h3 class="aniview foot-head-delay" av-animation="fadeInRight">{$Think.lang.WeChat}</h3>
+                    <div class="footer-warp text-left">
+                        <div class="foot-wechat">
+                            <img src="__UPLOADS__/{$pubPhoto.photo}" alt="欧游娱乐公众号" width="100px" height="100px">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<div class="empty-div"></div>
+<footer class="footer2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-xs-12">
+                <!--<img src="__iIMG__/logo1.jpg" alt="" width="52px" height="30px">-->
+            </div>
+            <div class="col-md-9 col-xs-12">
+                <div class="copyright-div">
+                    <p>copyright &copy; <span id="foot-year"></span> {$Think.lang.BrandName} . 沪ICP备17027207号</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

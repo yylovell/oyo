@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Music Go！预约日期与等级</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="__aIMG__/logo_music.jpg">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <link rel="stylesheet" href="__mCSS__/common.css">
+
+    <style>
+        .card{
+            margin: 1rem .5rem;
+            box-shadow: none;
+        }
+        .card-footer {
+            padding-top: .8rem;
+            font-size: .85rem;
+            background-color: #EFEFF4;
+        }
+        .button.button-fill {
+            height: 1.55rem;
+            line-height: 1.55rem;
+        }
+        .card:last-child{
+            margin-bottom: 3.5rem;
+        }
+        .open-detail{
+            padding: .7rem 1rem .7rem .7rem;
+        }
+        .check-list{
+            display: none;
+        }
+        .list-block .li  .item-inner:after,
+        .list-block .li:last-child .item-inner:after{
+            height: 0;
+        }
+        .verb-block{
+            height: 15px;
+            background-color: #EFEFF4;
+        }
+    </style>
+</head>
+<body>
+<div class="page-group">
+    <!-- 单个page ,第一个.page默认被展示-->
+    <div class="page">
+        <!-- 标题栏 -->
+        <!--<header class="bar bar-nav">
+            <h1 class="title">预约日期与等级</h1>
+        </header>-->
+
+
+        <!-- 这里是页面内容区 -->
+        <div class="content">
+            <input type="text" style="display: none;" id="learn_id" value="{$data.id}">
+            <div class="content-block-title" style="font-size: .8rem;font-weight: 600;">{$data.title}</div>
+            <div class="card">
+                <div valign="bottom" class="card-header color-white no-border no-padding">
+                    <img class='card-cover' src="__UPLOADS__/{$data.photo}" alt="">
+                </div>
+                <div class="content-block" style="margin: 1rem 0;">{$data.des}</div>
+                <div class="verb-block"></div>
+                <div class="card-header">
+                    <div class="list-block" style="width: 100%">
+                        <ul>
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-media"><i class="icon icon-clock"></i></div>
+                                    <div class="item-inner">
+                                        <div class="item-input">
+                                            <input type="text" id='picker' placeholder="预约日期" value=""/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="verb-block"></div>
+                <div class="card-content">
+                    <div class="card-content-inner">
+                        <div class="list-block media-list">
+                            <ul class="pend-ul">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer row">
+                    <div class="col-100"><a href="javascript:;" id="sub" class="button button-round button-fill button-success">确定</a></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 工具栏 -->
+        <nav class="bar bar-tab">
+            <a class="tab-item external active" href="{:url('index/lists')}">
+                <span class="icon icon-edit"></span>
+                <span class="tab-label">约课</span>
+            </a>
+            <a class="tab-item external" href="{:url('student/index')}">
+                <span class="icon icon-me"></span>
+                <span class="tab-label">个人中心</span>
+            </a>
+        </nav>
+    </div>
+</div>
+
+<script type='text/javascript' src='__mJS__/common.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script>
+    var time_lists = {$time};
+    //配置日期选项
+    $("#picker").picker({
+        toolbarTemplate: '<header class="bar bar-nav">\
+                            <button class="button button-link pull-left"></button>\
+                            <button class="button button-link pull-right close-picker">确定</button>\
+                            <h1 class="title">选择日期</h1>\
+                           </header>',
+        cols: [
+            {
+                textAlign: 'center',
+                values: time_lists
+            }
+        ]
+    });
+</script>
+<script>
+    $(function () {
+        var learn_id = $('#learn_id').val();
+
+        //
+        function getGrade(time_area) {
+            var url = "{:url('getGrade')}";
+            var data = {'learn_id':learn_id, 'time_area':time_area};
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                dataType: 'json',
+                data: data,
+                success: function (data) {
+                    if (data.code == 1)
+                    {
+                        $('.pend-ul').children().remove();
+                        $('.pend-ul').append(data.data);
+                    }
+                    else
+                    {
+                        $.alert(data.msg);
+                    }
+                },
+                error: function (xhr, type) {
+                    $.alert('网络错误');
+                }
+            });
+        }
+
+
+        // 显隐等级
+        $('.pend-ul').on('click', '.open-detail' , function (e) {
+            e.preventDefault();
+            $(this).next().find('.check-list').toggle()
+        });
+        $('.pend-ul').on('click', '.item-title-row', function (e) {
+            e.preventDefault();
+            $(this).parent().find('.check-list').toggle()
+        });
+        $('.pend-ul').on('click', '.item-subtitle', function (e) {
+            e.preventDefault();
+            $(this).parent().find('.check-list').toggle()
+        });
+
+        $("#picker").on('change', function () {
+            var time = $(this).val();
+            getGrade(time);
+        });
+
+        $('#sub').click(function () {
+            var time_area = $("#picker").val();
+            if (time_area.length <1)
+            {
+                $.alert('请选择一个课程日期');
+                return false;
+            }
+
+            var grade = $("input[name='radio']:checked").val();
+            if(grade==null){
+                $.alert("请选择一个课程等级!");
+                return false;
+            }
+
+            var url = "{:url('add')}";
+            var data = {'learn_id':learn_id, 'time_area':time_area, 'grade_id':grade};
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                dataType: 'json',
+                data: data,
+                success: function (data) {
+                    if (data.code == 1)
+                    {
+                        $.alert(data.msg, function () {
+                            location.reload();
+                        });
+                    }
+                    else
+                    {
+                        $.alert(data.msg);
+                    }
+                },
+                error: function (xhr, type) {
+                    $.alert('网络错误');
+                }
+            });
+        });
+    })
+</script>
+</body>
+</html>

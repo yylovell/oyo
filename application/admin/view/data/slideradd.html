@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加轮播图</title>
+    <link rel="shortcut icon" href="__cIMG__/favicon.ico">
+    <link rel="Bookmark" href="__cIMG__/favicon.ico">
+    <link href="__aCSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__aCSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="__aCSS__/animate.min.css" rel="stylesheet">
+    <link href="__aCSS__/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="__aCSS__/style.min.css?v=4.1.0" rel="stylesheet">
+    <link href="__aJS__/plugins/layui/css/layui.css" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="__aCSS__/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link rel="stylesheet" href="__aCSS__/plugins/switchery/switchery.css" >
+    <link href="__aCSS__/bootstrap-colorpicker.css" rel="stylesheet">
+    <link href="__aCSS__/common.css" rel="stylesheet">
+    <style>
+        .item-title{
+            position: absolute;
+            top: 30px;
+            left: -45px;
+            height: 30px;
+            width: 180px;
+            text-align: center;
+            line-height: 30px;
+            font-family: "宋体", 微软雅黑;
+            font-size: 11px;
+            font-weight: 600;
+            opacity: 1;
+            color: #fff;
+            transform:rotate(-45deg);
+            -ms-transform:rotate(-45deg); 	/* IE 9 */
+            -moz-transform:rotate(-45deg); 	/* Firefox */
+            -webkit-transform:rotate(-45deg); /* Safari 和 Chrome */
+            -o-transform:rotate(-45deg);
+        }
+    </style>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>添加轮播图</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" >
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" data-original-title="必填项"></i> 标题：</label>
+                                <div class="input-group col-sm-7">
+                                    <input id="title" type="text" class="form-control" name="title" required="" aria-required="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom" data-original-title="非必填项，当类型选择【无转向有背景条】时，此处内容为背景条文字字样，建议不要超过8个字"></i> 描述：</label>
+                                <div class="input-group col-sm-7">
+                                    <textarea id="des" type="text" class="form-control" name="des" rows="3" cols="1"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom" data-original-title="必填项，从数字1-10，越小优先级越高"></i> 权值：</label>
+                                <div class="input-group col-sm-7">
+                                    <input id="weightval" type="number" min="1" max="10" class="form-control" name="weightval" required="" aria-required="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> 是否推送：</label>
+                                <div class="input-group col-sm-7">
+                                    <input type="checkbox" class="js-switch js-check-click" />
+                                </div>
+                            </div>
+                            <div class="form-group type">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" data-original-title="必填项"></i> 类型：</label>
+                                <input type="hidden" id="type" name="type"/>
+                                <div class="input-group col-sm-7 layui-form">
+                                    <select lay-verify="required" lay-filter="type" lay-search required="" aria-required="true">
+                                        {volist name="type_name_map" id="vo"}
+                                        <option value="{$key}" >{$vo}</option>
+                                        {/volist}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group cases">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" data-original-title="必填项"></i> 选择案例：</label>
+                                <input type="hidden" id="cases_id" name="cases_id"/>
+                                <div class="input-group col-sm-7 layui-form">
+                                    <select lay-verify="required" lay-filter="cases_id" lay-search required="" aria-required="true">
+                                        {volist name="cases" id="vo"}
+                                        <option value="{$vo.id}" >({$vo.customer}){$vo.title}</option>
+                                        {/volist}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group news hidden">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" data-original-title="必填项 ,该新闻必须拥有封面"></i> 选择新闻：</label>
+                                <input type="hidden" id="news_id" name="news_id"/>
+                                <div class="input-group col-sm-7 layui-form">
+                                    <select lay-verify="required" lay-filter="news_id" lay-search required="" aria-required="true">
+                                        {volist name="news" id="vo"}
+                                        <option value="{$vo.id}" >{$vo.title}</option>
+                                        {/volist}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group background hidden">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" data-original-title="必填项"></i> 选择背景条颜色：</label>
+                                <div class="input-group col-sm-7">
+                                    <div id="cp3a" class="input-group colorpicker-component" data-color="rgba(255, 255, 255, 0.3)"
+                                         title="Using data-color attribute in the colorpicker element">
+                                        <input type="text" id="b_type_num" name="b_type" class="form-control"/>
+                                        <span class="input-group-addon" style="background-color: #eee;"><i></i></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group upload-photo">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom" data-original-title="必填项，照片宽高为2000*900像素"></i> 上传封面：</label>
+                                    <div class="input-group col-sm-7">
+                                        <span class="btn btn-primary btn-file">
+                                            上传<input id="photo" type="file" multiple="multiple" >
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group hidden photo-read">
+                                    <label class="col-sm-2 control-label"> 预览：</label>
+                                    <div class="input-group col-sm-7" style="overflow: hidden;">
+                                        <div class="thumbnail">
+                                            <img src="" name="photo" id="photo-r">
+                                        </div>
+                                        <div class="item-title hidden" style="background-color: rgba(255,255,255,0.3);"></div>
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <button class="btn btn-primary sub">提交</button>
+                                <button class="btn btn-default cancel" >取消</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="__aJS__/jquery.min.js?v=2.1.4"></script>
+<script src="__aJS__/bootstrap.min.js?v=3.3.6"></script>
+<script src="__aJS__/content.min.js?v=1.0.0"></script>
+<script src="__aJS__/plugins/validate/jquery.validate.min.js"></script>
+<script src="__aJS__/plugins/validate/messages_zh.min.js"></script>
+<script src="__aJS__/plugins/iCheck/icheck.min.js"></script>
+<script src="__aJS__/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="__aJS__/plugins/layer/laydate/laydate.js"></script>
+<script src="__aJS__/plugins/suggest/bootstrap-suggest.min.js"></script>
+<script src="__aJS__/plugins/layer/layer.min.js"></script>
+<script src="__aJS__/plugins/layui/layui.js"></script>
+<script src="__aJS__/plugins/switchery/switchery.js"></script>
+<script src="__aJS__/bootstrap-colorpicker.js"></script>
+<script type="text/javascript">
+
+    //表单提交
+    function toVaild(){
+
+    }
+
+    //表单验证
+    $(document).ready(function(){
+        $(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",});
+    });
+    $.validator.setDefaults({
+        highlight: function(e) {
+            $(e).closest(".form-group").removeClass("has-success").addClass("has-error")
+        },
+        success: function(e) {
+            e.closest(".form-group").removeClass("has-error").addClass("has-success")
+        },
+        errorElement: "span",
+        errorPlacement: function(e, r) {
+            e.appendTo(r.is(":radio") || r.is(":checkbox") ? r.parent().parent().parent() : r.parent())
+        },
+        errorClass: "help-block m-b-none",
+        validClass: "help-block m-b-none"
+    });
+
+</script>
+<script>
+
+    var SLIDER_TYPE_CASE_DETAIL = '{:app\\common\\controller\\Sys::SLIDER_TYPE_CASE_DETAIL}';
+    var SLIDER_TYPE_NEWS_DETAIL = '{:app\\common\\controller\\Sys::SLIDER_TYPE_NEWS_DETAIL}';
+    var SLIDER_TYPE_CASE_LETTER_B = '{:app\\common\\controller\\Sys::SLIDER_TYPE_CASE_LETTER_B}';
+    $(function () {
+        var jz;
+        var up_path = '__UPLOADS__';
+        var up_path_length = parseInt(up_path.length)+1;
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $('#cp3a').colorpicker();
+
+        layui.use('form', function() {
+            var form = layui.form;
+            //执行实例
+            form.on('select(type)', function (value) {
+                $("#type").val(value.value);
+                changeType(parseInt(value.value));
+            });
+            form.on('select(cases_id)', function (value) {
+                $("#cases_id").val(value.value);
+            });
+
+            form.on('select(news_id)', function (value) {
+                $("#news_id").val(value.value);
+            });
+        });
+
+        $('#photo').on('change',function(){
+            //创建数据对象
+            var data = new FormData();
+
+            //判断前一张
+            var last_photo_path = $('#photo-r').attr('src');
+
+
+            if(last_photo_path.length>0){
+                data.append('last_photo_path',last_photo_path.substring(up_path_length));//添加上一张照片路径属性
+            }
+            var file = $(this)[0].files[0];
+            data.append('upload_file',file);
+
+            /*$.each($(this)[0].files,function(i,file){//添加图片
+             data.append('upload_file'+i,file);
+             });*/
+
+            $.ajax({
+                url: "{:url('cases/addPhoto')}",
+                datatype: "json",
+                data:data,
+                type: "POST",
+                cache:false,
+                contentType:false,
+                processData:false,
+                beforeSend:function(){
+                    jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+                },
+                error: function(request) {
+                    layer.close(jz);
+                    swal("网络错误!", "", "error");
+                },
+                success: function(data) {
+                    //关闭加载层
+                    layer.close(jz);
+                    if(data.code == 1){
+                        console.log(data);
+                        var photo_path='__UPLOADS__/'+data.data;
+                        $('#photo-r').attr('src',photo_path);
+                        $('.photo-read').removeClass('hidden');
+                        /*swal(data.msg, "", "success");*/
+                    }else{
+                        swal(data.msg, "", "error");
+                    }
+
+                }
+            });
+        });//异步上传图片代码
+
+        $('.cancel').click(function () {
+            var last_photo_path = $('#photo-r').attr('src');
+            if(last_photo_path.length>0){
+                var path = last_photo_path.substring(up_path_length);
+
+                $.ajax({
+                    url: "{:url('cancelAdd')}",
+                    datatype: 'json',
+                    data:{
+                        'photo_path':path
+                    },
+                    type: "POST",
+
+                    success: function(data) {
+                        if(data.code == 1){
+                            $('#photo-r').attr('src','');
+                            location.href="{:url('slider')}";
+                        }else{
+                            swal(data.msg, "", "error");
+                        }
+
+                    }
+                });
+            }
+            else {
+                location.href="{:url('slider')}";
+            }
+        });
+
+        /*类型*/
+
+        var cases = $('.cases');
+        var cases_id = $('#cases_id');
+        var news = $('.news');
+        var news_id = $('#news_id');
+
+        cases_id.val(cases.find('select').val());
+
+        var b = $('.background');
+        var b_type_num = $('#b_type_num');
+
+        var id = '';
+        var b_type = 'rgba(255,255,255,0.3)';
+
+        var title = $('.item-title');
+
+        $('#type').val($('.type').find('select').val());
+        function changeType(value) {
+            switch (value){
+                case 0:
+                    cases.removeClass('hidden');news.addClass('hidden');b.addClass('hidden');title.addClass('hidden');
+                    cases_id.val(cases.find('select').val());
+                    break;
+                case 1:
+                    cases.addClass('hidden');news.addClass('hidden');b.addClass('hidden');title.addClass('hidden');
+                    break;
+                case 2:
+                    cases.addClass('hidden');news.removeClass('hidden');b.addClass('hidden');title.addClass('hidden');
+                    news_id.val(news.find('select').val());
+                    break;
+                case 3:
+                    cases.addClass('hidden');news.addClass('hidden');b.addClass('hidden');title.addClass('hidden');
+                    break;
+                case 4:
+                    cases.addClass('hidden');news.addClass('hidden');b.addClass('hidden');title.addClass('hidden');
+                    break;
+                case 5:
+                    cases.addClass('hidden');news.addClass('hidden');b.addClass('hidden');title.addClass('hidden');
+                    break;
+                case 6:
+                    cases.addClass('hidden');news.addClass('hidden');b.removeClass('hidden');title.removeClass('hidden');
+                    break;
+            }
+        }
+
+        // 描述改变
+        $('#des').bind('input propertychange', function () {
+            title.html($('#des').val());
+        });
+        // 背景条颜色改变
+        b_type_num.on('change', function () {
+            $('.item-title').css('background-color', $(this).val());
+        });
+
+        var elem = document.querySelector('.js-switch');
+        var switchery = new Switchery(elem, {color: '#1ab394'});
+        var clickCheckbox = document.querySelector('.js-check-click');
+
+        /*提交*/
+        $('.sub').click(function () {
+            var url = "{:url('sliderAdd')}";
+
+            if (clickCheckbox.checked) {
+                var is_send = 1;
+            }
+            else {
+                is_send = 0;
+            }
+
+            var path = $('#photo-r').attr('src').substring(up_path_length),
+                    title = $('#title').val(),
+                    weight_val = $('#weightval').val(),
+                    type = $('#type').val(),
+                    des = $('#des').val()
+                    ;
+
+            if(type == SLIDER_TYPE_CASE_DETAIL){
+                id = cases_id.val();
+            }
+            else if(type == SLIDER_TYPE_NEWS_DETAIL){
+                id = news_id.val();
+            }else {
+                id = 0;
+                if (type == SLIDER_TYPE_CASE_LETTER_B){
+                     b_type = b_type_num.val();
+                }
+            }
+
+            var data = {
+                title:title,
+                weight_val:weight_val,
+                is_send:is_send,
+                type:type,
+                des:des,
+                photo:path,
+                id:id,
+                b_color: b_type
+            };
+
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,// 你的formid
+                async: false,
+                beforeSend:function(){
+                    jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+                },
+                error: function(request) {
+                    layer.close(jz);
+                    swal("网络错误!", "", "error");
+                },
+                success: function(data) {
+                    //关闭加载层
+                    layer.close(jz);
+                    if(data.code == 1){
+                        swal(data.msg, "", "success");
+                        setTimeout(function () {
+                            location.href="{:url('data/slider')}";
+                        }, 1000);
+                    }else{
+                        swal(data.msg, "", "error");
+                    }
+
+                }
+            });
+
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

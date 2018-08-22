@@ -1,0 +1,209 @@
+.header{
+    padding: 30px 80px;
+    font-weight: 300;
+    font-size: 18px;
+    background-color: #24ad7f;
+    background-size: cover;
+    background-image: url('../images/breadcrumbs-bar-bg.jpg');
+    color: #fff;
+    line-height: 60px;
+}
+.header h1{
+    text-shadow: -3px 3px 0 rgba(0,0,0,.1);
+}
+.breadcrumbs{
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+.breadcrumbs a{
+    color: #fff !important;
+}
+
+/*新闻列表*/
+.news-lists{
+    min-height: 300px;
+    padding: 20px 150px;
+    background-color: #F5F7F8;
+}
+.news-lists-right{
+    padding: 25px 40px;
+    background-color: #fff;
+}
+.news-lists-right hr{
+    width: 100%;
+    border-top:1px solid #f5f5f5;
+}
+.news-lists-right .news-card hr{
+    margin: 0;
+    width: 100%;
+    border-top:2px dashed #f5f5f5;
+    border-top-color: rgba(205,154,15,.5);
+}
+
+/*选项卡*/
+.aw-nav-tabs {
+    position: relative;
+    z-index: 1;
+    min-height: 63px;
+    min-height: 32px\0;
+    margin: 0;
+    padding: 30px 20px 0;
+    border-color: #e6e6e6;
+}
+
+.aw-nav-tabs.active > li {
+    float: right;
+}
+.aw-nav-tabs > li {
+    margin: 0 4px 0 0;
+    font-size: 14px;
+}
+
+.aw-nav-tabs > li > a {
+    color: #58666e;
+}
+.aw-nav-tabs > li > a {
+    line-height: 30px;
+    padding: 0 13px;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+}
+.aw-nav-tabs h3 {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    margin: 0;
+    font-size: 20px;
+}
+.aw-nav-tabs > li.active a {
+    line-height: 30px;
+    background-color: #fff;
+    border: none;
+    border-bottom-width: medium;
+    border-bottom-style: none;
+    border-bottom-color: currentcolor;
+    border-bottom: 2px solid rgb(205, 154, 15);
+    font-weight: 700;
+}
+.aw-nav-tabs > li.active a:hover {
+    line-height: 30px;
+    background-color: #fff;
+    border: none;
+    border-bottom-width: medium;
+    border-bottom-style: none;
+    border-bottom-color: currentcolor;
+    border-bottom: 2px solid rgb(205, 154, 15);
+    font-weight: 700;
+}
+
+.aw-nav-tabs > li > a:hover {
+    border: none;
+    border-bottom-width: medium;
+    border-bottom-style: none;
+    border-bottom-color: currentcolor;
+    border-bottom: 2px solid rgb(205, 154, 15);
+    background-color: #fff;
+}
+
+.news-card{
+    padding: 30px 0 20px;
+}
+.news-card button{
+    background-color: #f0f0f0;
+}
+.media-heading{
+    color: rgba(205,154,15,1);
+    display: inline-block;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.link{
+    font-size: 12px;
+    color: rgba(0,0,0,.43);
+}
+
+.content-header{
+    position: relative;
+
+    padding:0 10px;
+    margin-bottom: 20px;
+}
+.content-header i{
+    position: absolute;
+    right: 20px;
+    top:40%;
+
+    color: rgba(205,154,15,1);
+    font-size: 20px;
+    font-weight: 200;
+    cursor: pointer;
+}
+.content{
+    -webkit-animation-duration: .8s;
+    animation-duration: .8s;
+    animation-delay: 0s;
+    -webkit-animation-delay: 0s;
+}
+
+/*新闻详情*/
+.news-detail{
+    min-height: 300px;
+    padding: 20px 150px;
+    background-color: #F5F7F8;
+}
+.news-detail .news-detail-content{
+    padding: 75px 40px;
+    background-color: #fff;
+}
+.news-detail img{
+    max-width: 100%;
+    height: auto;
+}
+/*分页*/
+.pagination > li > a,
+.pagination > li > span {
+    color: rgba(205,154,15,1);
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover {
+    color: rgba(205,154,15,1);
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+    background-color: rgba(205,154,15,1);
+    border-color: rgba(205,154,15,1);
+}
+
+@media screen and (max-width: 500px) {
+    .header {
+        padding: 30px;
+    }
+
+    .news-detail,.news-lists{
+        padding: 0;
+    }
+    .news-card{
+        padding: 30px 0 10px;
+    }
+    .news-detail .news-detail-content
+    ,.news-lists-right{
+        padding: 25px 30px;
+    }
+}
+
+/* 设置了浏览器宽度不大于500px时 abc 显示100px宽度 */

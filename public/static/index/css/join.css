@@ -1,0 +1,148 @@
+.header{
+    padding: 30px 80px;
+    font-weight: 300;
+    font-size: 18px;
+    background-color: #24ad7f;
+    background-size: cover;
+    background-image: url('../images/breadcrumbs-bar-bg.jpg');
+    color: #fff;
+    line-height: 60px;
+}
+.header h1{
+    text-shadow: -3px 3px 0 rgba(0,0,0,.1);
+}
+.breadcrumbs{
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+.breadcrumbs a{
+    color: #fff !important;
+}
+
+/*福利待遇*/
+
+.cases-text{
+    position: relative;
+    overflow: hidden;
+    padding:95px 40px 70px 100px;
+    background-color: #fff;
+}
+.cases_service_box{
+    text-align: left;
+    padding-left: 80px;
+    position: relative;
+
+    margin-bottom: 55px;
+    padding-top: 0;
+}
+.cases_service_box h3{
+    font-size: 20px;
+    margin-bottom: 11px;
+    font-family: Roboto;
+    font-weight: 300;
+    color: rgb(205, 154, 15) !important;
+}
+.cases_service_box p{
+    margin-bottom: 30px;
+    color: #939fa6;
+}
+.cases_service_box:hover .cases_icon_boxed{
+    color: #fff;
+    background-color: rgb(205, 154, 15);
+}
+.cases_icon_boxed{
+    position: absolute;
+    left: 0;
+    text-align: center;
+    margin-right: 20px;
+    width: 54px;
+    height: 54px;
+    line-height: 54px;
+    background: #f2f4f5;
+    display: inline-block;
+    color: rgb(205, 154, 15);
+
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    margin-bottom: 16px;
+    text-decoration: none;
+    -webkit-transition: all 180ms ease-in;
+}
+/*职位列表*/
+.join-lists{
+    min-height: 500px;
+    padding: 75px 50px;
+    background-color: #F5F7F8;
+}
+.join-lists .panel{
+    background-color:transparent;
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow:none;
+    margin-bottom: 20px;
+}
+.panel-warning:nth-child(1){
+    margin-top: 5px;
+}
+.join-card:hover .panel-heading{
+    -moz-box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.08);
+    -webkit-box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.08);
+}
+.join-card:hover .panel-collapse{
+    -moz-box-shadow: 0 20px 20px 3px rgba(0, 0, 0, 0.08);
+    -webkit-box-shadow: 0 20px 20px 3px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 20px 3px rgba(0, 0, 0, 0.08);
+}
+.join-card .panel-heading {
+    padding: 30px 15px;
+    border-bottom: 1px solid #ead36f;
+    cursor: pointer;
+}
+.join-card .panel-heading h3{
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+.join-card .panel-warning {
+    border-color: transparent;
+}
+
+.panel-warning > .panel-heading {
+    color: #cd9a0f;
+    background-color: #fff;
+    border-color: #ead36f;
+}
+.join-card .panel-body{
+    text-align: left;
+    padding-right: 20px;
+    background-color: #fff;
+
+    animation-delay: .1s;
+    -webkit-animation-delay: .1s;
+    -moz-animation-delay: .1s;
+}
+.alert{
+    margin-bottom: 0;
+}
+/* 设置了浏览器宽度不大于901px时 abc 显示200px宽度 */
+
+@media screen and (max-width: 500px) {
+    .header {
+        padding: 30px;
+    }
+    .cases-text{
+        position: relative;
+        overflow: hidden;
+        padding:55px 30px 70px;
+        background-color: #fff;
+    }
+    .cases-detail{
+        padding: 55px 15px;
+    }
+    .join-lists{
+        padding: 75px 10px;
+    }
+
+}

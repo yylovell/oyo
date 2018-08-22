@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加职位</title>
+    <link rel="shortcut icon" href="__cIMG__/favicon.ico">
+    <link rel="Bookmark" href="__cIMG__/favicon.ico">
+    <link href="__aCSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__aCSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="__aCSS__/animate.min.css" rel="stylesheet">
+    <link href="__aCSS__/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="__aCSS__/style.min.css?v=4.1.0" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="__aCSS__/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <!-- simditor-->
+    <link href="__aCSS__/plugins/simditor/simditor.css" rel="stylesheet">
+    <link rel="stylesheet" href="__aCSS__/plugins/simditor/simditor-emoji.css" >
+    <link rel="stylesheet" href="__aCSS__/plugins/switchery/switchery.css" >
+    <style>
+        .simditor .simditor-body, .editor-style {
+
+            max-height: 500px;
+            max-width: 900px;
+            overflow: auto;
+        }
+        .simditor .simditor-body img{
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>添加职位</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <!--<a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>-->
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" data-original-title="必填项"></i> 职位名称：</label>
+                                <div class="input-group col-sm-7">
+                                    <input id="name" type="text" class="form-control" name="name" required="" aria-required="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" data-original-title="必填项"></i> 工作地点：</label>
+                                <div class="input-group col-sm-7">
+                                    <input id="address" type="text" class="form-control" name="address" required="" aria-required="true">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> 是否推送：</label>
+                                <div class="input-group col-sm-7">
+                                    <input type="checkbox" class="js-switch js-check-click" />
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> 职位描述：</label>
+                                <div class="input-group col-sm-9">
+                                    <textarea id="des" type="text" class="form-control" name="des" style="overflow: hidden" rows="10" cols="1" autofocus></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <button class="btn btn-primary sub" >提交</button>
+                                <button class="btn btn-default cancel" >取消</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="__aJS__/jquery.min.js?v=2.1.4"></script>
+<script src="__aJS__/bootstrap.min.js?v=3.3.6"></script>
+<script src="__aJS__/content.min.js?v=1.0.0"></script>
+<script src="__aJS__/plugins/validate/jquery.validate.min.js"></script>
+<script src="__aJS__/plugins/validate/messages_zh.min.js"></script>
+<script src="__aJS__/plugins/iCheck/icheck.min.js"></script>
+<script src="__aJS__/plugins/sweetalert/sweetalert.min.js"></script>
+
+<script src="__aJS__/plugins/simditor/module.js"></script>
+<script src="__aJS__/plugins/simditor/hotkeys.js"></script>
+<script src="__aJS__/plugins/simditor/uploader.js"></script>
+<script src="__aJS__/plugins/simditor/simditor.js"></script>
+<script src="__aJS__/plugins/simditor/simditor-emoji.js"></script>
+
+<script src="__aJS__/plugins/layer/laydate/laydate.js"></script>
+<script src="__aJS__/plugins/suggest/bootstrap-suggest.min.js"></script>
+<script src="__aJS__/plugins/layer/layer.min.js"></script>
+<script src="__aJS__/plugins/switchery/switchery.js"></script>
+<script type="text/javascript">
+
+    //表单验证
+    $(document).ready(function(){
+        $(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",});
+    });
+    $.validator.setDefaults({
+        highlight: function(e) {
+            $(e).closest(".form-group").removeClass("has-success").addClass("has-error")
+        },
+        success: function(e) {
+            e.closest(".form-group").removeClass("has-error").addClass("has-success")
+        },
+        errorElement: "span",
+        errorPlacement: function(e, r) {
+            e.appendTo(r.is(":radio") || r.is(":checkbox") ? r.parent().parent().parent() : r.parent())
+        },
+        errorClass: "help-block m-b-none",
+        validClass: "help-block m-b-none"
+    });
+
+</script>
+<script>
+    $(function () {
+        var jz;
+        /*编辑工具初始化*/
+        var editor = new Simditor({
+            textarea: $('#des'),
+            placeholder: '请输入内容...',
+            toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'table', '|', 'link', 'hr', '|', 'indent', 'outdent' ,'alignment', 'emoji'],
+            emoji: {
+                imagePath: '__aIMG__/emoji/'
+            }
+        });
+
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+
+        /*取消*/
+        $('.cancel').click(function () {
+
+            location.href="{:url('lists')}";
+
+        });
+
+        var elem = document.querySelector('.js-switch');
+        var switchery = new Switchery(elem, {color: '#1ab394'});
+        var clickCheckbox = document.querySelector('.js-check-click');
+
+        /*提交*/
+        $('.sub').click(function () {
+            if (clickCheckbox.checked) {
+                var is_send = 1;
+            }
+            else {
+                is_send = 0;
+            }
+
+            var url = "{:url('joinAdd')}";
+            var name = $('#name').val(),
+                    address = $('#address').val(),
+                    des = editor.getValue()
+                    ;
+
+            var data = {
+                name:name,
+                address:address,
+                is_send:is_send,
+                des:des
+            };
+
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,// 你的formid
+                async: false,
+                beforeSend:function(){
+                    jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+                },
+                error: function(request) {
+                    layer.close(jz);
+                    swal("网络错误!", "", "error");
+                },
+                success: function(data) {
+                    //关闭加载层
+                    layer.close(jz);
+                    if(data.code == 1){
+                        swal(data.msg, "", "success");
+                        setTimeout(function () {
+                            location.href="{:url('lists')}";
+                        }, 1000);
+                    }else{
+                        swal(data.msg, "", "error");
+
+                    }
+
+                }
+            });
+
+            return false;
+
+        });
+
+    });
+</script>
+</body>
+</html>
