@@ -124,10 +124,10 @@ class Request
 
     /**
      * 架构函数
-     * @access public
+     * @access protected
      * @param array $options 参数
      */
-    public function __construct($options = [])
+    protected function __construct($options = [])
     {
         foreach ($options as $name => $item) {
             if (property_exists($this, $name)) {
@@ -248,7 +248,7 @@ class Request
         $options['baseUrl']     = $info['path'];
         $options['pathinfo']    = '/' == $info['path'] ? '/' : ltrim($info['path'], '/');
         $options['method']      = $server['REQUEST_METHOD'];
-        $options['domain']      = $info['scheme'] . '://' . $server['HTTP_HOST'];
+        $options['domain']      = isset($info['scheme']) ? $info['scheme'] . '://' . $server['HTTP_HOST'] : '';
         $options['content']     = $content;
         self::$instance         = new self($options);
         return self::$instance;
@@ -1241,8 +1241,7 @@ class Request
                 if (false !== $pos) {
                     unset($arr[$pos]);
                 }
-
-                $ip = trim($arr[0]);
+                $ip = trim(current($arr));
             } elseif (isset($_SERVER['HTTP_CLIENT_IP'])) {
                 $ip = $_SERVER['HTTP_CLIENT_IP'];
             } elseif (isset($_SERVER['REMOTE_ADDR'])) {
@@ -1370,7 +1369,7 @@ class Request
      * 设置或者获取当前的模块名
      * @access public
      * @param string $module 模块名
-     * @return string|$this
+     * @return string|Request
      */
     public function module($module = null)
     {
@@ -1386,7 +1385,7 @@ class Request
      * 设置或者获取当前的控制器名
      * @access public
      * @param string $controller 控制器名
-     * @return string|$this
+     * @return string|Request
      */
     public function controller($controller = null)
     {
@@ -1402,7 +1401,7 @@ class Request
      * 设置或者获取当前的操作名
      * @access public
      * @param string $action 操作名
-     * @return string
+     * @return string|Request
      */
     public function action($action = null)
     {
@@ -1418,7 +1417,7 @@ class Request
      * 设置或者获取当前的语言
      * @access public
      * @param string $lang 语言名
-     * @return string
+     * @return string|Request
      */
     public function langset($lang = null)
     {

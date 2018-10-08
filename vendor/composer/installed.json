@@ -1,60 +1,55 @@
 [
     {
-        "name": "topthink/think-installer",
-        "version": "v1.0.10",
-        "version_normalized": "1.0.10.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/top-think/think-installer.git",
-            "reference": "ae50760ebd7c687c7a8573db2cfa94a41e5100e3"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/top-think/think-installer/zipball/ae50760ebd7c687c7a8573db2cfa94a41e5100e3",
-            "reference": "ae50760ebd7c687c7a8573db2cfa94a41e5100e3",
-            "shasum": ""
-        },
-        "require": {
-            "composer-plugin-api": "^1.0"
-        },
-        "require-dev": {
-            "composer/composer": "1.0.*@dev"
-        },
-        "time": "2016-09-23T04:04:44+00:00",
-        "type": "composer-plugin",
-        "extra": {
-            "class": "think\\composer\\Plugin"
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "think\\composer\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "Apache-2.0"
-        ],
-        "authors": [
-            {
-                "name": "yunwuxin",
-                "email": "448901948@qq.com"
-            }
-        ]
-    },
-    {
-        "name": "topthink/framework",
+        "name": "qcloudsms/qcloudsms_php",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
-            "url": "https://github.com/top-think/framework.git",
-            "reference": "aa0028cef6dc67eaef968fb04beb5610ea1ff94a"
+            "url": "https://github.com/qcloudsms/qcloudsms_php.git",
+            "reference": "0091f1811ce88826aea4401db38e8e887648c403"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/top-think/framework/zipball/aa0028cef6dc67eaef968fb04beb5610ea1ff94a",
-            "reference": "aa0028cef6dc67eaef968fb04beb5610ea1ff94a",
+            "url": "https://api.github.com/repos/qcloudsms/qcloudsms_php/zipball/0091f1811ce88826aea4401db38e8e887648c403",
+            "reference": "0091f1811ce88826aea4401db38e8e887648c403",
+            "shasum": ""
+        },
+        "require-dev": {
+            "sami/sami": "dev-master"
+        },
+        "time": "2018-06-29T04:24:17+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Qcloud\\Sms\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "qcloud sms php sdk",
+        "keywords": [
+            "php",
+            "qcloud",
+            "sdk",
+            "sms"
+        ]
+    },
+    {
+        "name": "topthink/framework",
+        "version": "v5.0.2",
+        "version_normalized": "5.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/top-think/framework.git",
+            "reference": "0674c774981517e48911eafc0f1102a8fe56a022"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/top-think/framework/zipball/0674c774981517e48911eafc0f1102a8fe56a022",
+            "reference": "0674c774981517e48911eafc0f1102a8fe56a022",
             "shasum": ""
         },
         "require": {
@@ -70,7 +65,7 @@
             "sebastian/phpcpd": "2.*",
             "squizlabs/php_codesniffer": "2.*"
         },
-        "time": "2016-10-12T10:06:49+00:00",
+        "time": "2016-10-24T06:15:09+00:00",
         "type": "think-framework",
         "installation-source": "dist",
         "autoload": {
@@ -97,63 +92,21 @@
         ]
     },
     {
-        "name": "topthink/think-image",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/top-think/think-image.git",
-            "reference": "3f3cc4923f07edd59ee79fd82b39e3b2a49618cb"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/top-think/think-image/zipball/3f3cc4923f07edd59ee79fd82b39e3b2a49618cb",
-            "reference": "3f3cc4923f07edd59ee79fd82b39e3b2a49618cb",
-            "shasum": ""
-        },
-        "require": {
-            "ext-gd": "*"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "4.8.*",
-            "topthink/framework": "^5.0"
-        },
-        "time": "2016-12-26T05:33:26+00:00",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "think\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "Apache-2.0"
-        ],
-        "authors": [
-            {
-                "name": "yunwuxin",
-                "email": "448901948@qq.com"
-            }
-        ],
-        "description": "The ThinkPHP5 Image Package"
-    },
-    {
         "name": "topthink/think-captcha",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/top-think/think-captcha.git",
-            "reference": "9572406f5ed6637f0e12f6106514d488e2cc1a43"
+            "reference": "d1ca0cae744400c987005fcbf605bd567e0224bc"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/top-think/think-captcha/zipball/9572406f5ed6637f0e12f6106514d488e2cc1a43",
-            "reference": "9572406f5ed6637f0e12f6106514d488e2cc1a43",
+            "url": "https://api.github.com/repos/top-think/think-captcha/zipball/d1ca0cae744400c987005fcbf605bd567e0224bc",
+            "reference": "d1ca0cae744400c987005fcbf605bd567e0224bc",
             "shasum": ""
         },
-        "time": "2016-12-28T08:22:04+00:00",
+        "time": "2018-06-07T10:51:51+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -177,41 +130,88 @@
         "description": "captcha package for thinkphp5"
     },
     {
-        "name": "qcloudsms/qcloudsms_php",
+        "name": "topthink/think-image",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
-            "url": "https://github.com/qcloudsms/qcloudsms_php.git",
-            "reference": "54b87eb4a2dfa112f905c3713f2a2971a3e8382d"
+            "url": "https://github.com/top-think/think-image.git",
+            "reference": "87c2946a0e0f45cc438462415ced38a0799847ef"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/qcloudsms/qcloudsms_php/54b87eb4a2dfa112f905c3713f2a2971a3e8382d.zip",
-            "reference": "54b87eb4a2dfa112f905c3713f2a2971a3e8382d",
+            "url": "https://api.github.com/repos/top-think/think-image/zipball/87c2946a0e0f45cc438462415ced38a0799847ef",
+            "reference": "87c2946a0e0f45cc438462415ced38a0799847ef",
             "shasum": ""
         },
-        "require-dev": {
-            "sami/sami": "dev-master"
+        "require": {
+            "ext-gd": "*"
         },
-        "time": "2018-05-03T03:01:20+00:00",
+        "require-dev": {
+            "phpunit/phpunit": "4.8.*",
+            "topthink/framework": "^5.0"
+        },
+        "time": "2017-12-18T03:09:47+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {
             "psr-4": {
-                "Qcloud\\Sms\\": "src/"
+                "think\\": "src"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "MIT"
+            "Apache-2.0"
         ],
-        "description": "qcloud sms php sdk",
-        "keywords": [
-            "php",
-            "qcloud",
-            "sdk",
-            "sms"
+        "authors": [
+            {
+                "name": "yunwuxin",
+                "email": "448901948@qq.com"
+            }
+        ],
+        "description": "The ThinkPHP5 Image Package"
+    },
+    {
+        "name": "topthink/think-installer",
+        "version": "v1.0.12",
+        "version_normalized": "1.0.12.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/top-think/think-installer.git",
+            "reference": "1be326e68f63de4e95977ed50f46ae75f017556d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/top-think/think-installer/zipball/1be326e68f63de4e95977ed50f46ae75f017556d",
+            "reference": "1be326e68f63de4e95977ed50f46ae75f017556d",
+            "shasum": ""
+        },
+        "require": {
+            "composer-plugin-api": "^1.0"
+        },
+        "require-dev": {
+            "composer/composer": "1.0.*@dev"
+        },
+        "time": "2017-05-27T06:58:09+00:00",
+        "type": "composer-plugin",
+        "extra": {
+            "class": "think\\composer\\Plugin"
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "think\\composer\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "yunwuxin",
+                "email": "448901948@qq.com"
+            }
         ]
     }
 ]

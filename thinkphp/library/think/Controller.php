@@ -48,6 +48,7 @@ class Controller
         }
         $this->view    = View::instance(Config::get('template'), Config::get('view_replace_str'));
         $this->request = $request;
+
         // 控制器初始化
         $this->_initialize();
 

@@ -298,7 +298,7 @@ if (!function_exists('session')) {
             Session::init($name);
         } elseif (is_null($name)) {
             // 清除
-            Session::clear($value);
+            Session::clear('' === $value ? null : $value);
         } elseif ('' === $value) {
             // 判断或获取
             return 0 === strpos($name, '?') ? Session::has(substr($name, 1), $prefix) : Session::get($name, $prefix);
@@ -543,50 +543,4 @@ if (!function_exists('token')) {
         $token = Request::instance()->token($name, $type);
         return '<input type="hidden" name="' . $name . '" value="' . $token . '" />';
     }
-}
-
-/**
- * 获取客户端IP地址
- * @param integer $type 返回类型 0 返回IP地址 1 返回IPV4地址数字
- * @param bool $adv 是否进行高级模式获取（有可能被伪装）
- * @return mixed
- */
-function get_client_ip($type = 0, $adv = true)
-{
-    $type = $type ? 1 : 0;
-    static $ip = NULL;
-    if ($ip !== NULL)
-    {
-        return $ip[$type];
-    }
-    if ($adv)
-    {
-        if (isset($GLOBALS['_SERVER']['HTTP_X_FORWARDED_FOR']))
-        {
-            $arr = explode(',', $GLOBALS['_SERVER']['HTTP_X_FORWARDED_FOR']);
-            $pos = array_search('unknown', $arr);
-            if (false !== $pos)
-            {
-                unset($arr[$pos]);
-            }
-            $ip = trim($arr[0]);
-        }
-        elseif (isset($GLOBALS['_SERVER']['HTTP_CLIENT_IP']))
-        {
-            $ip = $GLOBALS['_SERVER']['HTTP_CLIENT_IP'];
-        }
-        elseif (isset($GLOBALS['_SERVER']['REMOTE_ADDR']))
-        {
-            $ip = $GLOBALS['_SERVER']['REMOTE_ADDR'];
-        }
-    }
-    elseif (isset($GLOBALS['_SERVER']['REMOTE_ADDR']))
-    {
-        $ip = $GLOBALS['_SERVER']['REMOTE_ADDR'];
-    }
-
-    // IP地址合法验证
-    $long = sprintf("%u", ip2long($ip));
-    $ip = $long ? [$ip, $long] : ['0.0.0.0', 0];
-    return $ip[$type];
 }

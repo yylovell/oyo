@@ -10,7 +10,22 @@
             <div class="item-subtitle">{$vo.des}</div>
 
             <div class="list-block media-list check-list">
-                <ul style="height: auto;overflow: auto;padding-left: 0">
+                <div class="row">
+                    {foreach $vo.children as $vo1}
+                    <div class="col-50">
+                        <label class="label-checkbox item-content">
+                            <input type="radio" name="radio" value="{$vo1.id}">
+                            <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title">{$vo1.name}</div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    {/foreach}
+                </div>
+                <!--<ul style="height: auto;overflow: auto;padding-left: 0">
                     {foreach $vo.children as $vo1}
                     <li class="li">
                         <label class="label-checkbox item-content">
@@ -24,7 +39,7 @@
                         </label>
                     </li>
                     {/foreach}
-                </ul>
+                </ul>-->
             </div>
         </div>
     </label>
