@@ -26,7 +26,9 @@
                 <p>上映日期：{$v.playDate.data}</p>
                 {/if}
                 <p>导演：{$v['director']['data']['1']['name']}</p>
-                <p>主演：{$v['star']['data']['1']['name']} {$v['star']['data']['2']['name']} {$v['star']['data']['3']['name']} {$v['star']['data']['4']['name']}</p>
+                {if condition="isset($v['star']['data']['1'])"}
+                <p>主演：{$v['star']['data']['1']['name']} </p>
+                {/if}
                 <p><a href="{$v.iconlinkUrl}" class="btn btn-xs btn-primary" target="_blank" style="color: #fff;">详情</a></p>
             </div>
             <div class="clearfix"></div>

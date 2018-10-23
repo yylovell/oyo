@@ -29,4 +29,5 @@ return [
 
     'jd_appkey' => 'b1f8aa18219cc1c2ca154b824a7acb9f',
     'jh_appkey' => '7ea859fd5e4e6fbd5684d4c855ad0f23',
+    'jh_new_appkey' => '7d301336de2ebf352592ab7858a29bf6',
 ];

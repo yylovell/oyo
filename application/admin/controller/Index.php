@@ -26,7 +26,7 @@ class Index extends Base
         $this->assign('is_music', $is_music);
 
         // 查找新闻资讯分类
-        if (cookie('news_cat'))
+        /*if (cookie('news_cat'))
         {
             $news_cat = cookie('news_cat');
         }
@@ -46,7 +46,7 @@ class Index extends Base
             }
         }
 
-        $this->assign('news_cat', $news_cat);
+        $this->assign('news_cat', $news_cat);*/
 
         return $this->fetch('/index');
     }
@@ -60,8 +60,8 @@ class Index extends Base
         {
             if (request()->isPost())
             {
-                $cat_name = input('channel', '');
-                $key = input('cat_key', 0);
+                $cat_name = input('channel', '头条');
+                $key = input('cat_key', 'top');
                 if (!$cat_name)
                 {
                     throw new Exception('数据缺失');
@@ -74,19 +74,20 @@ class Index extends Base
                 else
                 {
                     // 查找新闻资讯
-                    $url = "https://way.jd.com/jisuapi/get?channel=$cat_name&num=10&start=0&appkey=" . config('jd_appkey');
+                    $url = "http://v.juhe.cn/toutiao/index?type=$key&key=" . config('jh_new_appkey');
+                    //$url = "https://way.jd.com/jisuapi/get?channel=$cat_name&num=10&start=0&appkey=" . config('jd_appkey');
                     $result = curl_get($url);
                     $wxResult = json_decode($result, true);
-                    if ($wxResult && $wxResult['code'] == '10000')
+                    if ($wxResult && $wxResult['error_code'] == 0)
                     {
                         $news_now = [];
-                        foreach ($wxResult['result']['result']['list'] as $k =>$item)
+                        foreach ($wxResult['result']['data'] as $k =>$item)
                         {
-                            $news_now[$k]['pic'] = $item['pic'];
-                            $news_now[$k]['src'] = $item['src'];
+                            $news_now[$k]['pic'] = $item['thumbnail_pic_s'];
+                            $news_now[$k]['src'] = $item['author_name'];
                             $news_now[$k]['title'] = $item['title'];
-                            $news_now[$k]['time'] = $item['time'];
-                            $news_now[$k]['weburl'] = $item['weburl'];
+                            $news_now[$k]['time'] = $item['date'];
+                            $news_now[$k]['weburl'] = $item['url'];
                         }
                         cache('news_now_' . $key, $news_now, 300);
                     }
